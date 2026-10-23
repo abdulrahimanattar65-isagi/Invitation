@@ -1,0 +1,9 @@
+# Satin ribbon asset
+
+Asset: `public/assets/champagne-satin-bow.png`
+
+Generated with the built-in ImageGen tool. The transparent PNG is mapped onto a WebGL fabric mesh for both the resting bow and its release. The original satin texture remains visible as the mesh deforms; there is no switch to vector shapes or split image tiles. The animation progresses through tension, loop contraction, tail straightening, and a damped sweep away from the card. A static-image transition is available when WebGL is unavailable. A botanical wax seal lifts before the ribbon begins moving.
+
+## Generation prompt
+
+Use case: product-mockup. Asset type: transparent photographic satin ribbon overlay for an elegant interactive wedding invitation. Generate a single continuous narrow pale champagne silk satin ribbon stretched horizontally from the very left edge to the very right edge, tied at the exact horizontal center into a small delicate realistic French bow. Landscape 3:2 composition. The horizontal ribbon sits at y=43% of the image; it is narrow, about 3% of image height. The small central knot is at x=50%, y=43%. Two softly draped asymmetrical bow loops span only 30% of image width total, with naturally flattened folds and subtle pearly reflected highlights. Two long slender ribbon tails drape naturally down to y=85%, one curving slightly left, one right, with angled cut tips. Fine textile grain, luxurious understated bridal stationery styling, warm ivory and champagne palette rather than yellow metallic gold, soft studio illumination from upper left. Genuine transparent background around the ribbon and in the spaces inside the bow loops. No seal, no logo, no monogram, no text, no paper, no card, no background, no people, no fake checkerboard. Show actual fabric with natural creases, thin edges and fine specular highlights; avoid stiff symmetrical loops or thick rope-like forms.

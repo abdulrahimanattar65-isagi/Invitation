@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@ffmpeg-installer/win32-x64": "^4.1.0"
+  }
+}

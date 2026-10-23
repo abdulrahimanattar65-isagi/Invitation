@@ -1,0 +1,75 @@
+/* Warm paper and embossed botanical edges echo the invitation inside the film. */
+.hero{position:relative;align-content:center;row-gap:26px;outline:none}
+.folio-open{border-radius:4px;background:linear-gradient(135deg,#bfa46b,#efe0b9 30%,#907341 60%,#d8c38e);padding:12px;box-shadow:0 24px 70px #0006,inset 0 0 0 1px #f1dca2}
+.folio-open > .velvet-nap,.folio-open > .velvet-light{display:none}
+.folio-open .acrylic{border:none;border-radius:2px;background:radial-gradient(ellipse at 20% 0%,#fffdf6,transparent 70%),repeating-linear-gradient(12deg,#d5c8ad0b 0 1px,transparent 1px 3px),#f0e9db;box-shadow:inset 0 0 60px #b5a48533;backdrop-filter:none;-webkit-backdrop-filter:none;padding:54px 68px 64px;overflow:hidden}
+.folio-open .acrylic::before{display:none}
+.folio-open .glass-sheen{opacity:.2;animation:satinLight 9s ease-in-out infinite;background:linear-gradient(115deg,transparent 20%,#fffdfacc 43%,transparent 61%)}
+.embossed-frame{position:absolute;inset:0;width:100%;height:100%;color:#af985b;opacity:.65;pointer-events:none}
+.hero-crest{margin-bottom:14px}
+.hero-crest .crest{width:100px;filter:drop-shadow(0 1px 0 #80652b66)}
+.hero-copy{color:#234435;gap:6px}
+.hero-copy .caps{color:#395142;letter-spacing:.16em;font-size:.85rem}
+.hero-copy .ghost{color:#667161;font-size:1.08rem}
+.hero-copy .couple-names h1{color:#a17b31;text-shadow:0 1px 0 #fff9;line-height:1.35}
+.hero-copy .amp{color:#a17b31}
+.hero-copy .date-big,.hero-copy .venue-hero{background:none;color:#92702e;filter:none;animation:none;padding:.12em .2em;line-height:1.5}
+.hero-copy .date-big{font-size:1.35rem}
+.hero-copy .venue-hero{font-size:2rem}
+.hero-copy .rule{background:linear-gradient(90deg,transparent,#b79a57,transparent)}
+.scroll-invitation{font-family:"Cinzel",serif;text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:#e9d7a8;line-height:2}
+.scroll-invitation span{display:block;font-size:1.2rem;animation:scrollNudge 3s ease-in-out infinite}
+.experience-opening .page{animation:none}
+.experience-opening .hero{opacity:0;transform:translateY(30px) scale(.97);animation:invitationArrive 1.4s 2.2s forwards}
+.experience-open .hero-crest,.experience-open .hero-copy > *{animation:inkReveal 1s both}
+.experience-open .hero-copy > :nth-child(2){animation-delay:.12s}
+.experience-open .hero-copy > :nth-child(3){animation-delay:.24s}
+.experience-open .hero-copy > :nth-child(n+4){animation-delay:.4s}
+.reveal{transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.reveal.in .timeline li{animation:inkReveal .8s both}
+.reveal.in .timeline li:nth-child(2){animation-delay:.1s}
+.reveal.in .timeline li:nth-child(3){animation-delay:.2s}
+.reveal.in .timeline li:nth-child(4){animation-delay:.3s}
+.reveal.in .timeline li:nth-child(5){animation-delay:.4s}
+.countdown{padding:16px 12px;background:#f0e9db;border:1px solid #d2b875;border-radius:45% 8px / 12px 8px;box-shadow:0 5px 14px #0003}
+.cd-box{background:none;border:0;border-right:1px solid #b9a77b66;box-shadow:none;border-radius:0;padding:8px 4px}
+.cd-box:last-child{border-right:0}
+.cd-num{color:#34513e;font-variant-numeric:tabular-nums}
+.cd-label{color:#716342}
+@keyframes invitationArrive{to{opacity:1;transform:none}}
+@keyframes inkReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes satinLight{0%,100%{transform:translateX(-30%)}50%{transform:translateX(30%)}}
+@keyframes scrollNudge{50%{transform:translateY(5px)}}
+
+@media(min-width:900px){
+  .folio-open{max-width:920px;padding:14px}
+  .folio-open .acrylic{padding:56px 96px 70px}
+  .couple-names{column-gap:4px}
+  .couple-names h1{font-size:clamp(2.8rem,4.5vw,3.8rem)}
+  .hero{padding-bottom:36px}
+  .cover-corner{width:240px}
+}
+@media(min-width:600px) and (max-width:899px){
+  .folio-open .acrylic{padding:52px 66px 60px}
+}
+@media(max-width:599px){
+  .cover-open{min-width:200px}
+  .cover-prompt{margin-top:24px;font-size:.56rem}
+  .folio-open{padding:7px}
+  .folio-open .acrylic{padding:48px 36px 54px}
+  .hero-crest .crest{width:86px}
+  .hero-copy .caps{font-size:.68rem;letter-spacing:.1em;line-height:1.8}
+  .hero-copy .ghost{font-size:.94rem;line-height:1.6}
+  .hero-copy .couple-names h1{font-size:clamp(2rem,9vw,3rem);padding:.14em .15em}
+  .hero-copy .date-big{font-size:clamp(.92rem,4vw,1.2rem)}
+  .hero-copy .venue-hero{font-size:clamp(1.55rem,7vw,2rem)}
+  .hero{gap:20px;padding-bottom:28px}
+  .countdown{padding:14px 6px;gap:2px}
+  .cd-box{padding:8px 2px}
+}
+@media(prefers-reduced-motion:reduce){
+  .app *,.app *::before,.app *::after{animation:none!important;transition:none!important}
+  .experience-opening .hero{opacity:1;transform:none}
+  .invitation-cover.opening{opacity:0}
+  .reveal{transform:none}
+}

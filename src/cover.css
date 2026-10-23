@@ -1,0 +1,79 @@
+/* A botanical wax seal over satin and embossed stationery. */
+.invitation-cover{position:fixed;inset:0;z-index:20;display:grid;place-items:center;gap:0;min-height:100%;padding:28px;overflow:hidden;perspective:1600px;color:#8c713d;background:radial-gradient(ellipse at 22% 18%,#315a43,transparent 60%),linear-gradient(125deg,#0d3023,#214a36 40%,#09251c);transition:none}
+.invitation-cover::after{z-index:-1;box-shadow:inset 0 0 160px #00180e80;background:repeating-linear-gradient(112deg,transparent 0 60px,#ffffff05 80px,transparent 130px,#00000008 190px)}
+.cover-shell{position:relative;width:min(100%,540px);height:min(880px,calc(100svh - 56px));min-height:500px;isolation:isolate;box-shadow:0 24px 90px #0005,0 1px 0 #eeddbb44}
+.paper-leaf{position:absolute;top:0;bottom:0;width:50.1%;z-index:-1;backface-visibility:hidden;background:radial-gradient(ellipse at 35% 25%,#fffdf5,transparent 80%),repeating-linear-gradient(18deg,#b7a68108 0 1px,transparent 1px 3px),#eee5d5;box-shadow:inset 0 0 36px #b5a48518;will-change:transform}
+.paper-left{left:0;transform-origin:left center}
+.paper-right{right:0;transform-origin:right center}
+.cover-embossing{position:absolute;inset:0;pointer-events:none;opacity:.7}
+.cover-embossing .embossed-frame{color:#b09d76}
+.cover-heading{position:absolute;top:14%;left:12%;width:76%;max-width:none;padding:0;margin:0;color:#84745a;font-size:.58rem;letter-spacing:.23em;line-height:1.9;text-align:center;opacity:1}
+.cover-title{position:absolute;top:22%;left:10%;width:80%;text-align:center}
+.cover-names{display:flex;flex-direction:column;align-items:center;flex-wrap:nowrap;gap:0;width:100%;max-width:none;font-size:clamp(2.6rem,5svh,3.7rem);line-height:1.15;color:#9d7b3c}
+.cover-name{display:block;padding:.1em .32em .15em;background:none;color:inherit;filter:none;animation:none;white-space:nowrap;overflow:visible}
+.cover-amp{font-family:"Cormorant Garamond",serif;font-size:.42em;line-height:1.1;color:#9d7b3c;opacity:.8}
+.cover-footer{position:absolute;top:auto;bottom:18%;left:14%;width:72%;max-width:none;display:grid;gap:10px;text-align:center}
+.cover-date{font-size:.65rem;letter-spacing:.15em;line-height:1.8;color:#756446;opacity:1}
+.cover-venue{font-size:.92rem;font-style:italic;color:#91806a;line-height:1.5}
+.cover-open{position:absolute;inset:0;width:100%;height:100%;max-width:none;min-width:0;display:flex;flex-direction:row;align-items:flex-end;justify-content:center;gap:12px;padding:0 28px 9%;border:0;border-radius:0;background:none;color:#796441;cursor:pointer;z-index:4;-webkit-tap-highlight-color:transparent}
+.cover-open:focus-visible{outline:2px solid #b59557;outline-offset:-12px}
+.cover-prompt{margin:0;font-size:.55rem;letter-spacing:.17em;line-height:24px;color:#796441}
+.cover-arrow{margin:0;font-family:Georgia,serif;font-size:20px;line-height:24px;color:#a58b58;opacity:1}
+.cover-open:hover .cover-arrow{transform:translate(3px,-3px)}
+.cover-open:disabled{cursor:default}
+.invitation-cover.opening{opacity:1;transform:none;filter:none;pointer-events:none;animation:backdropDissolve .8s 4.85s forwards}
+.opening .cover-heading,.opening .cover-title,.opening .cover-footer{animation:stationeryInkOut .6s 4.4s forwards}
+.opening .cover-open{animation:stationeryInkOut .4s forwards}
+.opening .cover-embossing{animation:stationeryInkOut .7s 4.7s forwards}
+.opening .cover-shell{animation:paperShadowOut .8s 4.7s forwards}
+.experience-opening .hero{animation:invitationArrive 1.2s 4.55s forwards}
+@keyframes stationeryInkOut{to{opacity:0}}
+@keyframes backdropDissolve{to{opacity:0}}
+@keyframes paperShadowOut{to{box-shadow:0 0 0 transparent}}
+.ribbon-performance{position:absolute;inset:0;pointer-events:none;z-index:2}
+.ribbon-photograph{position:absolute;top:52%;left:50%;width:135%;aspect-ratio:3/2;transform:translate(-50%,-39%)}
+.ribbon-photograph img{display:block;width:100%;height:100%;object-fit:contain}
+.ribbon-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;opacity:0;pointer-events:none}
+.ribbon-ready .ribbon-canvas{opacity:1}
+.ribbon-ready .ribbon-photograph{opacity:0}
+.opening .ribbon-fallback .ribbon-photograph{animation:fallbackRibbonRelease 3.6s .7s cubic-bezier(.35,0,.2,1) forwards}
+@keyframes fallbackRibbonRelease{
+  20%{transform:translate(-50%,-39%) scale(1.015,.98);opacity:1}
+  55%{transform:translate(-48%,-42%) rotate(-4deg);opacity:1}
+  100%{transform:translate(80%,-65%) rotate(-14deg);opacity:0}
+}
+.front-wax-seal{position:absolute;top:52%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);width:96px;height:96px;z-index:3;pointer-events:none;perspective:500px}
+.wax-stamp{display:block;width:100%;height:100%;filter:drop-shadow(1px 6px 5px #70552e55);transform-origin:50% 75%;transition:filter .3s}
+.cover-shell:has(.cover-open:hover) .wax-stamp{filter:drop-shadow(1px 7px 6px #70552e66) brightness(1.04)}
+.opening .wax-stamp{animation:breakWaxSeal .7s .05s cubic-bezier(.25,.7,.2,1) forwards}
+@keyframes breakWaxSeal{
+  25%{transform:translateY(-3px) rotateX(18deg) rotate(-3deg);opacity:1}
+  65%{transform:translateY(-28px) rotateX(35deg) rotate(-10deg) scale(1.06);opacity:1}
+  100%{transform:translateY(-66px) rotateX(45deg) rotate(-15deg) scale(1.1);opacity:0}
+}
+@media(max-width:599px){
+  .invitation-cover{padding:0}
+  .cover-shell{width:100%;height:100svh;min-height:500px;box-shadow:none}
+  .cover-heading{top:15%;font-size:.55rem;letter-spacing:.2em}
+  .cover-title{top:24%}
+  .cover-names{font-size:clamp(2.6rem,6svh,3.5rem);line-height:1.1}
+  .ribbon-photograph{width:150%}
+  .front-wax-seal{width:78px;height:78px}
+  .cover-footer{bottom:19%;gap:8px}
+  .cover-date{font-size:.6rem;letter-spacing:.13em}
+  .cover-open{padding-bottom:max(10%,env(safe-area-inset-bottom))}
+  .cover-prompt{font-size:.55rem;margin:0}
+}
+@media(max-height:650px){
+  .invitation-cover{padding:0}
+  .cover-shell{height:100svh;min-height:320px;width:min(100%,540px)}
+  .cover-heading{top:12%}
+  .cover-title{top:21%}
+  .cover-names{font-size:2.3rem}
+  .cover-footer{bottom:16%;gap:4px}
+  .cover-open{padding-bottom:5%}
+}
+@media(prefers-reduced-motion:reduce){
+  .invitation-cover.opening{opacity:0;animation:none}
+  .paper-leaf{will-change:auto}
+}
