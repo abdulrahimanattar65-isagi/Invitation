@@ -1,37 +1,58 @@
-// ✏️  EDIT EVERYTHING HERE — dates, names, venue, timings. No other file needs changes.
+﻿// Invitation copy supplied by the family. Dates use day-month-year.
 export const wedding = {
-  initials: "C&S",
-  bride: "Catherine",
-  groom: "Seán",
-  hostLine: "Mr. & Mrs. Elizabeth Slattery",
-  inviteLine: "request the pleasure of your presence at the wedding of their daughter",
-
-  // Main date/time (ISO format: YYYY-MM-DDTHH:MM:SS). Countdown + displayed date use this.
-  dateISO: "2027-03-20T17:00:00",
-
-  venue: "Dromoland Castle",
-  address: "Newmarket-on-Fergus, Co. Clare, Ireland",
-  venueNote:
-    "Set amid centuries-old woodland, the castle will host our ceremony, dinner and dancing. Parking is available on site.",
-  mapUrl: "https://maps.google.com/?q=Dromoland+Castle",
-
-  // The Day — change times/labels freely, add or remove rows
-  timeline: [
-    { time: "4:30 PM", title: "Welcome", note: "Guests arrive & are seated" },
-    { time: "5:00 PM", title: "Ceremony", note: "The Great Hall" },
-    { time: "6:00 PM", title: "Cocktail Hour", note: "Drinks on the terrace" },
-    { time: "7:30 PM", title: "Dinner", note: "Banquet in the ballroom" },
-    { time: "9:30 PM", title: "Dancing", note: "Dance the night away" },
+  initials: "E&Y",
+  bride: "Ekta",
+  groom: "Yashji",
+  brideMarathi: "सौ. कां. एकता",
+  groomMarathi: "चि. यशजी",
+  dateISO: "2026-12-05T17:30:00+05:30",
+  dateDisplay: "5-12-2026",
+  venue: "आईल रिसोर्ट वंडरला",
+  address: "बैंगलोर",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("आईल रिसोर्ट वंडरला बैंगलोर"),
+  hosts: ["शा जवेरीलालजी महेंद्रकुमार विनायकिया", "हुबली / दूँदाड़ा", "तेज ट्रेडर्स ( अंकल ग्रुप हुबली )"],
+  phones: ["9448116626", "9242239565"],
+  invocations: ["श्री महावीराय नमः", "श्री गणेशाय नमः", "श्री अंबेमाताय नमः"],
+  blessing: "मंगलम भगवान वीरो , मंगलम गौतम प्रभु , मंगलम स्थूली भद्राय , जैन धर्मोस्तु मंगलम",
+  greeting: "परम आदरणीय श्रेष्ठिवर,",
+  salutation: "सादर जय जिनेंद्र,",
+  introduction: "वीर प्रभु एवं देव गुरु की असीम कृपा से हमारे यहां हम सब की लाडली",
+  brideFamily: ["सुपौत्री: श्रीमती कमलादेवी जवेरीलालजी विनायकिया", "सुपुत्री: श्रीमती कांतादेवी महेंद्रकुमारजी विनायकीया"],
+  groomFamily: ["सुपौत्र : श्रीमती कमलादेवी स्व. श्री बाबूलालजी धोका", "सुपुत्र : श्रीमती बबीतादेवी विनोदकुमारजी धोका"],
+  invitation: "का शुभ विवाह विक्रम संवत २०८३ आषाढ़ सुदी एकम शनिवार दिनांक 5-12-2026 को होना सुनिश्चित हुआ है। अतः इस शुभ अवसर पर आप सपरिवार पधारकर वर वधु को आशीर्वाद प्रदान कर हमे अनुगृहीत करें।",
+  from: "शा जवेरीलालजी ,भंवरलाल , शांतिलाल, विजयकुमार, तेजराज, वसंत, विक्रम, महेंद्र कुमार एवं समस्त विनायकिया परिवार",
+  hometown: "हुबली / दूँदाड़ा",
+  familyGroups: [
+    { title: "दर्शनाभिलाषी", lines: ["श्रीमती गीतादेवी तेजराजजी", "श्रीमती निर्मलादेवी वसंत कुमारजी", "श्रीमती कल्पनादेवी विक्रम कुमारजी", "श्रीमती कांतादेवी महेंद्र कुमारजी"] },
+    { title: "निहारती पलकें", lines: ["पूनम हसमुख कुमार विनायकिया", "चेलना अभय कुमार विनायकिया", "निधि मनीषजी बागरेचा"] },
+    { title: "मीठी मनुहार", lines: ["धीरा, खुश, युवांश, मन्नत, वंश, भूमिका, खुशबू, याशिका, लवीना, निकिता, लवेश"] },
+    { title: "ननिहाल पक्ष", lines: ["शा राजेंद्रजी, रमेशजी , अलकेशजी, दिनेशजी, राहुलजी , आशीषजी, नीतेशजी, अमितजी बड़ोदिया बोहरा परिवार शिमोगा / बैंगलोर / सालावास", "शा हंसराजजी कुनाल कुमार मेहता", "शिरालकोप्पा / बैंगलोर / आऊवा"] },
+    { title: "समधीश्रेष्ठ", lines: ["शा जसराजजीसा, देवीचंदजीसा, भंवरलालजीसा, सूरजमलजीसा, भीमराजजीसा, मनोहरलालजीसा, धरमचंदजीसा, नरेंद्रकुमारजीसा ललितकुमारजीसा किशोरकुमारजीसा कांतिलालजीसा दिनेशकुमारजीसा जितेंद्रकुमारजीसा विनोदकुमारजीसा राकेशकुमारजीसा गजेंद्रकुमारजीसा अरविंदकुमरजीसा लक्ष्मणकुमारजीसा चिराग़कुमारजी भव्यकुमारजी दियाशजी बेटा पोता समस्त देवड़ा धोका परिवार ( खंडप )", "मरुधर पेपर्स शिवाजी नगर बैंगलोर"] },
   ],
-
-  dressCode: {
-    title: "Black Tie",
-    note: "Ladies in floor-length gowns, gentlemen in tuxedos. Jewel tones & emerald are welcome.",
-  },
-
-  rsvp: {
-    by: "1st February 2027",
-    contact: "Jane Ferris · +353 00 000 0000",
-    whatsapp: "353000000000", // country code + number, no + or spaces
-  },
+  ganeshVerse: ["विघ्न हरण मंगल करण, गण नायक गणराज ।", "रिद्धि सिद्धि सहित पधारकर पूरण करजो काज ।"],
+  timeline: [
+    { title: "पाठ बिठाई", date: "तिथि शीघ्र सूचित की जाएगी", note: "स्थान : निवास स्थान", images: [{ src: "/assets/ceremonies/path-bithai.jpg", alt: "पाठ बिठाई के लिए फूलों, गुलाबी पर्दों और दीपों से सजा झील के किनारे का मंडप", width: 1600, height: 900 }] },
+    { title: "बंदोली", date: "3-12-26", time: "शाम 5 बजे", note: "स्थान : विवाह स्थल", photoLayout: "portrait", photoEyebrow: "स्नेह और उल्लास", images: [{ src: "/assets/ceremonies/bandoli.png", alt: "घोड़ों पर सवार वर-वधू, ढोल और फूलों के साथ बंदोली का उत्सव", width: 1024, height: 1536 }] },
+    { title: "सगाई", date: "4-12-26", time: "सुबह 9 बजे", photoEyebrow: "शुभ सगाई", photoCopyPosition: "bottom", images: [{ src: "/assets/ceremonies/sagai.png", alt: "फूलों से सजे मंडप में अंगूठी पहनाते वर-वधू का सगाई समारोह", width: 1536, height: 1024 }] },
+    { title: "संगीत", date: "4-12-26", time: "शाम 6 बजे", photoLayout: "portrait", photoEyebrow: "सुरों और खुशियों की शाम", images: [{ src: "/assets/ceremonies/sangeet.png", alt: "फूलों और रोशनी से सजे महल में ढोल और परिवार के साथ नृत्य करते वर-वधू", width: 1122, height: 1402 }] },
+    { title: "कार्निवल", date: "5-12-26", time: "सुबह 9 बजे", photoLayout: "portrait", photoEyebrow: "रंग और उमंग", images: [{ src: "/assets/ceremonies/carnival.png", alt: "फूलों और लालटेन से सजे कार्निवल में वर-वधू, झूला, सजा ऊँट और लोक संगीतकार", width: 1122, height: 1402 }] },
+    { title: "बारात स्वागत", date: "5-12-26", time: "दोपहर 4 बजे", photoEyebrow: "सुस्वागतम्", photoCopyPosition: "bottom", images: [{ src: "/assets/ceremonies/baraat.png", alt: "सजे हुए महल के द्वार पर ढोल और शहनाई के साथ घोड़े पर सवार वर की बारात का स्वागत", width: 1672, height: 941 }] },
+    { title: "वरमाला", date: "5-12-26", time: "शाम 5.30 बजे", photoEyebrow: "प्रेम का शुभ बंधन", photoCopyPosition: "bottom", images: [{ src: "/assets/ceremonies/varmala.png", alt: "झील के किनारे फूलों से सजे मंडप में वरमाला पहनाते वर-वधू", width: 1448, height: 1086 }] },
+    { title: "रिसेप्शन", date: "5-12-26", time: "शाम 7 बजे", photoLayout: "portrait", photoEyebrow: "स्नेह मिलन", images: [{ src: "/assets/ceremonies/reception.png", alt: "फूलों और झूमरों से सजे स्वागत समारोह में साथ चलते वर-वधू", width: 1024, height: 1536 }] },
+    { title: "पाणिग्रहण", time: "मध्यरात्रि", photoLayout: "portrait", photoEyebrow: "पवित्र परिणय", images: [{ src: "/assets/ceremonies/panigrahan.png", alt: "फूलों से सजे मंडप में अग्नि के समक्ष परिवार के साथ वर-वधू का पाणिग्रहण संस्कार", width: 1024, height: 1536 }] },
+  ],
+  reception: "शनिवार दिनांक : 5-12-26 सायं 5.15 बजे से आयोजित प्रीतिभोज में आप सपरिवार सादर आमंत्रित है ।",
+  // Add supplied photos as { src: "/assets/photo.jpg", alt: "Image description" }.
+  pageImages: { 1: [], 2: [], 3: [], 4: [] },
+  coupleMessage: [
+    "With hearts full of love and joy, we invite you to celebrate the beginning of our beautiful journey together.",
+    "As we promise to walk hand in hand through all the moments life has in store, your presence and blessings will make our special day even more meaningful.",
+  ],
+  // Add the couple's supplied gallery photos as { src, alt, caption? }.
+  gallery: [
+    { src: "/assets/gallery/couple-01.jpg", alt: "Ekta and Yashji standing together beside a floral wall" },
+    { src: "/assets/gallery/couple-02.png", alt: "Ekta and Yashji together beneath garden lights" },
+    { src: "/assets/gallery/couple-03.jpg", alt: "Ekta and Yashji embracing outdoors" },
+    { src: "/assets/gallery/couple-04.jpg", alt: "A close portrait of Ekta and Yashji in the garden" },
+  ],
 };

@@ -1,26 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import { wedding as w } from "./config.js";
 import InvitationCover from "./components/InvitationCover.jsx";
-import Crest from "./components/Crest.jsx";
 import Countdown from "./components/Countdown.jsx";
+import CeremonyPhotoCard from "./components/CeremonyPhotoCard.jsx";
+import BlessingIntro from "./components/BlessingIntro.jsx";
+import GallerySlideshow from "./components/GallerySlideshow.jsx";
 import TextureDefs from "./components/TextureDefs.jsx";
 import EmbossedFrame from "./components/EmbossedFrame.jsx";
 
-const fmt = (o) => new Date(w.dateISO).toLocaleDateString("en-GB", o);
+function PageImages({ page }) {
+  const images = w.pageImages[page];
+  if (!images?.length) return null;
+  return <div className="invitation-images">{images.map(image => (
+    <img key={image.src} src={image.src} alt={image.alt} loading="lazy" />
+  ))}</div>;
+}
 
-function Reveal({ children, className = "" }) {
-  const ref = useRef(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const io = new IntersectionObserver(([e]) => e.isIntersecting && setOn(true), { threshold: 0.15 });
-    io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
-  return (
-    <section ref={ref} className={`reveal ${on ? "in" : ""} ${className}`}>
-      {children}
-    </section>
-  );
+function Lines({ lines }) {
+  return lines.map((line, index) => <p key={index}>{line}</p>);
 }
 
 export default function App() {
@@ -52,106 +49,80 @@ export default function App() {
   const open = () => {
     if (stage !== "closed") return;
     setStage("opening");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) openingTimer.current = setTimeout(() => setStage("open"), 150);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      openingTimer.current = setTimeout(() => setStage("open"), 150);
+    }
   };
 
   return (
-    <div className={`app experience-${stage}`}>
+    <div className={`app marathi-invitation experience-${stage}`} lang="mr">
       <TextureDefs />
-        <main className="page">
-          <section className="hero" ref={heroRef} tabIndex={-1} aria-label="Wedding invitation">
-            <div className="velvet folio-open">
-              {stage !== "open" && <InvitationCover stage={stage} onOpen={open} onOpened={() => setStage(current => current === "opening" ? "revealing" : current)} />}
-              <div className="velvet-nap" />
-              <div className="velvet-light" />
-
-              <div className="acrylic">
-                <div className="glass-sheen" />
-                <EmbossedFrame />
-                <div className="hero-crest">
-                  <Crest initials={w.initials} size={112} />
+      <main className="page">
+        <section id="page-1" className="hero" ref={heroRef} tabIndex={-1} aria-label="शुभ विवाह — प्रथम पृष्ठ">
+          <div className="velvet folio-open">
+            {stage !== "open" && <InvitationCover stage={stage} onOpen={open} onOpened={() => setStage(current => current === "opening" ? "revealing" : current)} />}
+            <div className="acrylic">
+              <EmbossedFrame />
+              <div className="hero-copy">
+                <BlessingIntro />
+                <p className="wedding-kicker">सस्नेह निमंत्रण</p>
+                <h1 className="marathi-title">शुभ विवाह</h1>
+                <p className="wedding-date">दिनांक : {w.dateDisplay}</p>
+                <div className="marathi-couple">
+                  <h2>{w.brideMarathi}</h2>
+                  <span className="marathi-sang">संग</span>
+                  <h2>{w.groomMarathi}</h2>
                 </div>
-                <div className="hero-copy">
-                <p className="small caps">{w.hostLine}</p>
-                <p className="small italic ghost">{w.inviteLine}</p>
-                <div className="couple-names">
-                  <h1 className="script foil">{w.bride}</h1>
-                  <span className="amp">&amp;</span>
-                  <h1 className="script foil">{w.groom}</h1>
+                <p className="english-couple script" lang="en">{w.bride} &amp; {w.groom}</p>
+                <div className="host-details">
+                  <h3>निमंत्रक:</h3>
+                  <Lines lines={w.hosts} />
+                  <p className="phone-links">{w.phones.map((phone, index) => <span key={phone}>{index > 0 && " / "}<a href={`tel:+91${phone}`}>{phone}</a></span>)}</p>
                 </div>
-                <div className="rule" />
-                <p className="caps date">{fmt({ weekday: "long" })}</p>
-                <p className="date-big foil">{fmt({ day: "numeric", month: "long", year: "numeric" })}</p>
-                <p className="small caps">
-                  {new Date(w.dateISO).toLocaleTimeString("en-GB", { hour: "numeric", minute: "2-digit", hour12: true })}
-                </p>
-                <p className="script foil venue-hero">{w.venue}</p>
-                <p className="small caps hero-address">
-                  <span>{w.address.split(",")[0]}</span>
-                  <span>{w.address.split(",").slice(1).join(",").trim()}</span>
-                </p>
-                </div>
+                <PageImages page={1} />
               </div>
             </div>
-            <p className="scroll-invitation">Scroll to discover our day <span aria-hidden="true">↓</span></p>
-          </section>
-
-          <div className="event-details" aria-hidden={stage !== "open"} {...(stage !== "open" ? { inert: "" } : {})}>
-          <Reveal>
-            <h2 className="script foil h2">Countdown</h2>
-            <Countdown target={w.dateISO} />
-          </Reveal>
-
-          <Reveal>
-            <h2 className="caps h2s">Location</h2>
-            <p className="script foil venue">{w.venue}</p>
-            <p className="small caps">{w.address}</p>
-            <p className="body">{w.venueNote}</p>
-            <a className="btn" href={w.mapUrl} target="_blank" rel="noreferrer">
-              Get Directions
-            </a>
-          </Reveal>
-
-          <Reveal className="day-section">
-            <h2 className="script foil h2">The Day</h2>
-            <ul className="timeline">
-              {w.timeline.map((t) => (
-                <li key={t.time + t.title} className="velvet">
-                  <span className="velvet-nap" />
-                  <span className="caps tm">{t.time}</span>
-                  <b className="caps">{t.title}</b>
-                  <em>{t.note}</em>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal className="dress-code">
-            <h2 className="caps h2s">Dress Code</h2>
-            <p className="script foil venue">{w.dressCode.title}</p>
-            <p className="body">{w.dressCode.note}</p>
-          </Reveal>
-
-          <Reveal className="rsvp">
-            <div className="velvet rsvp-card">
-              <div className="velvet-nap" />
-              <Crest initials={w.initials} size={96} />
-              <h2 className="caps h2s">RSVP</h2>
-              <p className="body">Kindly reply by {w.rsvp.by}</p>
-              <p className="small caps">{w.rsvp.contact}</p>
-              <a
-                className="btn"
-                href={`https://wa.me/${w.rsvp.whatsapp}?text=${encodeURIComponent("We'll be there to celebrate with you!")}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                RSVP on WhatsApp
-              </a>
-            </div>
-          </Reveal>
           </div>
-        </main>
+          <p className="scroll-invitation">मंगल निमंत्रण पाहण्यासाठी खाली सरकवा <span aria-hidden="true">↓</span></p>
+        </section>
+
+        <div className="event-details" aria-hidden={stage !== "open"} {...(stage !== "open" ? { inert: "" } : {})}>
+          <nav className="invitation-nav" aria-label="निमंत्रणाची पाने">
+            <a href="#page-1">शुभ विवाह</a><a href="#page-4">कार्यक्रम</a>
+          </nav>
+          <section className="invitation-sheet countdown-section" aria-labelledby="countdown-heading">
+            <h2 id="countdown-heading" className="sheet-heading" lang="en">Countdown</h2>
+            <p className="countdown-date">5 डिसेंबर 2026 · सायं 5:30 वाजता</p>
+            <div lang="en"><Countdown target={w.dateISO} /></div>
+          </section>
+          <section id="page-4" className="invitation-sheet" aria-labelledby="schedule-heading">
+            <p className="ganesh-invocation">श्री गणेशाय नमः</p>
+            <div className="sacred-verse"><Lines lines={w.ganeshVerse} /></div>
+            <h2 id="schedule-heading" className="sheet-heading">🚩 मांगलिक कार्यक्रम 🚩</h2>
+            <ol className="ceremony-schedule">{w.timeline.map(event => (
+              <li key={event.title} className={event.images?.length ? "ceremony-with-photo" : undefined}>
+                {event.images?.length ? <CeremonyPhotoCard event={event} /> : <>
+                  <h3>{event.title}</h3>
+                  <div>{event.date && <p>{event.date}</p>}{event.time && <p className="ceremony-time">{event.time}</p>}{event.note && <p className="ceremony-note">{event.note}</p>}</div>
+                </>}
+              </li>
+            ))}</ol>
+            <PageImages page={4} />
+
+          </section>
+          <section id="from-the-couple" className="invitation-sheet couple-message-section" lang="en" aria-labelledby="couple-message-heading">
+            <p className="couple-message-kicker">From the</p>
+            <h2 id="couple-message-heading" className="couple-message-heading">Bride and Groom</h2>
+            <div className="couple-message-copy"><Lines lines={w.coupleMessage} /></div>
+            <p className="couple-message-signature script">{w.bride} &amp; {w.groom}</p>
+            {w.gallery.length > 0 && <GallerySlideshow photos={w.gallery} />}
+          </section>
+          <section className="invitation-sheet" aria-labelledby="reception-heading">
+            <div className="reception-invitation"><h2 id="reception-heading" className="reception-heading">आशीर्वाद समारोह एवं प्रीतिभोज आमंत्रण :</h2><p>{w.reception}</p></div>
+            <div className="wedding-location"><p className="wedding-kicker">विवाह स्थल</p><h3>{w.venue}</h3><p>{w.address}</p><a className="location-link" href={w.mapUrl} target="_blank" rel="noreferrer">नकाशावर शोधा <span aria-hidden="true">↗</span></a></div>
+          </section>
+        </div>
+      </main>
     </div>
   );
 }

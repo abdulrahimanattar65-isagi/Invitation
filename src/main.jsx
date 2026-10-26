@@ -7,4 +7,5 @@ import "./cinematic.css";
 import "./cover.css";
 import "./cream-theme.css";
 import "./floral-reference.css";
+import "./invitation-pages.css";
 createRoot(document.getElementById("root")).render(<App />);

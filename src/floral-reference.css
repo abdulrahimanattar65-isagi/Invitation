@@ -22,6 +22,7 @@
 .hero .couple-names{grid-template-columns:1fr;gap:0}
 .hero .hero-copy .couple-names h1{font-size:3rem;line-height:1.25;padding:.13em .18em}
 .hero .couple-names .amp{font-size:1.15rem;line-height:1}
+.hero .hero-copy .couple-marathi{font-family:"Nirmala UI","Mangal",sans-serif;letter-spacing:0;line-height:1.8;text-wrap:balance}
 .hero .hero-copy .rule{margin:9px auto}
 .hero .hero-copy .date-big{font-size:1.05rem;line-height:1.4;margin:1px 0}
 .hero .hero-copy .date{font-size:.65rem}
