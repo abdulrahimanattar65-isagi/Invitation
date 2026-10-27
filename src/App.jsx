@@ -35,7 +35,10 @@ export default function App() {
   }, [stage]);
   useEffect(() => {
     if (stage !== "revealing") return;
-    const timer = window.setTimeout(() => setStage("open"), 1100);
+    // Transition completion normally opens the page; retain a fallback if the
+    // browser suppresses the event (including reduced-motion preferences).
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const timer = window.setTimeout(() => setStage("open"), reducedMotion ? 0 : 1700);
     return () => window.clearTimeout(timer);
   }, [stage]);
   useEffect(() => {
@@ -60,7 +63,7 @@ export default function App() {
       <main className="page">
         <section id="page-1" className="hero" ref={heroRef} tabIndex={-1} aria-label="शुभ विवाह — प्रथम पृष्ठ">
           <div className="velvet folio-open">
-            {stage !== "open" && <InvitationCover stage={stage} onOpen={open} onOpened={() => setStage(current => current === "opening" ? "revealing" : current)} />}
+            {stage !== "open" && <InvitationCover stage={stage} onOpen={open} onOpened={() => setStage(current => current === "opening" ? "revealing" : current)} onRevealComplete={() => setStage(current => current === "revealing" ? "open" : current)} />}
             <div className="acrylic">
               <EmbossedFrame />
               <div className="hero-copy">
@@ -87,9 +90,6 @@ export default function App() {
         </section>
 
         <div className="event-details" aria-hidden={stage !== "open"} {...(stage !== "open" ? { inert: "" } : {})}>
-          <nav className="invitation-nav" aria-label="निमंत्रणाची पाने">
-            <a href="#page-1">शुभ विवाह</a><a href="#page-4">कार्यक्रम</a>
-          </nav>
           <section className="invitation-sheet countdown-section" aria-labelledby="countdown-heading">
             <h2 id="countdown-heading" className="sheet-heading" lang="en">Countdown</h2>
             <p className="countdown-date">5 डिसेंबर 2026 · सायं 5:30 वाजता</p>

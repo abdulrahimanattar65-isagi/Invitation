@@ -145,6 +145,12 @@
 .marathi-invitation .invitation-sheet::before{display:none}
 .marathi-invitation .invitation-nav{position:relative;background:none;border-radius:0}
 .marathi-invitation .countdown{background:none;border:0;box-shadow:none}
+/* Keep the countdown close to the navigation and ceremony details. */
+.marathi-invitation .invitation-nav{padding-bottom:12px}
+.marathi-invitation .countdown-section{padding-top:16px;padding-bottom:12px}
+.marathi-invitation .countdown-section .sheet-heading{margin-top:0}
+.marathi-invitation .countdown-date{margin-bottom:12px}
+.marathi-invitation .countdown-section + .invitation-sheet{padding-top:24px}
 .marathi-invitation .ceremony-photo-card{border:0;box-shadow:none}
 .marathi-invitation .reception-invitation{background:none;border:0}
 @media(max-width:599px){
@@ -152,6 +158,12 @@
   .marathi-invitation .hero .folio-open .acrylic{padding-top:54px;background:none}
   .marathi-invitation .page::before{background:linear-gradient(90deg,transparent,#fff9efe6 17%,#fff9efe6 83%,transparent)}
 }
+
+/* Bring the scroll prompt directly below the first-page details. */
+.marathi-invitation .hero{row-gap:8px}
+.marathi-invitation .hero .folio-open{min-height:0}
+.marathi-invitation .hero .folio-open .acrylic{min-height:0;padding-bottom:16px}
+.marathi-invitation .scroll-invitation{margin:8px 0 16px}
 
 /* Arched event frames, sized consistently across all ceremony images. */
 .marathi-invitation .ceremony-schedule li.ceremony-with-photo{margin:20px 0 38px}
@@ -186,6 +198,9 @@
 .gate-enter:focus-visible{outline:2px solid #957036;outline-offset:-8px}
 .gate-skip{position:absolute;right:16px;bottom:max(20px,env(safe-area-inset-bottom));z-index:3;padding:9px 14px;border:1px solid #b6955b66;border-radius:3px;background:#fff7e9e6;color:#654c2f;font-family:Georgia,serif;font-size:.8rem;cursor:pointer}
 .marathi-invitation .gate-revealing{opacity:0;pointer-events:none}
+.marathi-invitation .gate-cover{transition:opacity 1.5s cubic-bezier(.4,0,.2,1)}
+.marathi-invitation.experience-closed .hero-copy,.marathi-invitation.experience-opening .hero-copy{opacity:0;transform:translateY(10px)}
+.marathi-invitation.experience-revealing .hero-copy,.marathi-invitation.experience-open .hero-copy{opacity:1;transform:none;transition:opacity 1.3s .15s ease,transform 1.5s .15s cubic-bezier(.22,1,.36,1)}
 @media(prefers-reduced-motion:reduce){.marathi-invitation .gate-cover,.gate-initials{transition:none}}
 
 /* A personal note from the couple, followed by their supplied photographs. */
@@ -204,10 +219,12 @@
 
 /* Gallery prints with torn ivory paper above and below each photograph. */
 .couple-gallery{gap:28px;padding:8px 4px}
-.couple-gallery-print{position:relative;isolation:isolate;overflow:hidden;background:#f8f2e8;box-shadow:0 8px 22px #5d4c3b24,0 1px 3px #5d4c3b20;border:1px solid #b99b6733}
+.couple-gallery-print{position:relative;isolation:isolate;overflow:hidden;background:transparent;box-shadow:none;border:0}
 .couple-gallery-print::before,.couple-gallery-print::after{content:"";position:absolute;left:-1px;right:-1px;z-index:1;height:13%;min-height:30px;pointer-events:none;background:linear-gradient(175deg,#fffaf2,#f3ecdf);clip-path:polygon(0 0,100% 0,100% 88%,98% 86%,96% 91%,94% 87%,92% 89%,90% 82%,88% 85%,86% 80%,84% 87%,82% 83%,80% 91%,78% 86%,76% 92%,74% 88%,72% 96%,70% 90%,68% 94%,66% 88%,64% 92%,62% 85%,60% 90%,58% 86%,56% 94%,54% 89%,52% 96%,50% 91%,48% 96%,46% 90%,44% 93%,42% 85%,40% 89%,38% 83%,36% 88%,34% 81%,32% 85%,30% 78%,28% 83%,26% 77%,24% 84%,22% 79%,20% 86%,18% 81%,16% 89%,14% 83%,12% 90%,10% 85%,8% 91%,6% 86%,4% 92%,2% 87%,0 90%)}
 .couple-gallery-print::before{top:-1px}
 .couple-gallery-print::after{bottom:-1px;height:7%;min-height:22px;transform:rotate(180deg)}
+/* Blend the paper edges into the invitation's cream backdrop. */
+.couple-gallery-print::before,.couple-gallery-print::after{background:#fff9ef}
 .couple-gallery-photo .couple-gallery-print img{display:block;width:100%;aspect-ratio:4/5;height:auto;object-fit:cover;object-position:center;border:0;border-radius:0;box-shadow:none}
 .couple-gallery-photo figcaption{font-style:italic;margin-top:14px}
 @media(max-width:599px){.couple-gallery{grid-template-columns:1fr;width:100%;max-width:330px;gap:26px}}

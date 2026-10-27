@@ -1,7 +1,7 @@
 ﻿import { useRef, useState } from "react";
 import { wedding as w } from "../config.js";
 
-export default function InvitationCover({ stage, onOpen, onOpened }) {
+export default function InvitationCover({ stage, onOpen, onOpened, onRevealComplete }) {
   const videoRef = useRef(null);
   const [failed, setFailed] = useState(false);
 
@@ -18,7 +18,10 @@ export default function InvitationCover({ stage, onOpen, onOpened }) {
   };
 
   return (
-    <section className={`invitation-cover gate-cover gate-${stage}`} aria-label="Wedding invitation gate">
+    <section className={`invitation-cover gate-cover gate-${stage}`} aria-label="Wedding invitation gate"
+      onTransitionEnd={event => {
+        if (stage === "revealing" && event.target === event.currentTarget && event.propertyName === "opacity") onRevealComplete();
+      }}>
       <div className="gate-scene">
         <video
           ref={videoRef}
@@ -28,6 +31,11 @@ export default function InvitationCover({ stage, onOpen, onOpened }) {
           preload="auto"
           playsInline
           muted
+          onTimeUpdate={event => {
+            const video = event.currentTarget;
+            // Blend into the page while the final frames are still moving.
+            if (stage === "opening" && Number.isFinite(video.duration) && video.duration > 1 && video.duration - video.currentTime <= 0.7) onOpened();
+          }}
           onEnded={onOpened}
           onError={() => { setFailed(true); if (stage === "opening") onOpened(); }}
           aria-hidden="true"
