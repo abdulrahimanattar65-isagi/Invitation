@@ -24,9 +24,11 @@ function EventDate({ date }) {
   const parts = date?.match(/^(\d{1,2})-(\d{1,2})-(\d{2}|\d{4})$/);
   if (!parts) return date ? <p className="karyakram-date-pending">{date}</p> : null;
   const year = parts[3].length === 2 ? `20${parts[3]}` : parts[3];
+  const month = new Intl.DateTimeFormat("hi-IN", { month: "long", timeZone: "UTC" })
+    .format(new Date(Date.UTC(Number(year), Number(parts[2]) - 1, 1)));
   return <time className="karyakram-date" dateTime={`${year}-${parts[2].padStart(2, "0")}-${parts[1].padStart(2, "0")}`}>
     <span className="karyakram-day">{parts[1].padStart(2, "0")}</span>
-    <span className="karyakram-month">दिसंबर<span>{year}</span></span>
+    <span className="karyakram-month">{month}<span>{year}</span></span>
   </time>;
 }
 
@@ -36,11 +38,9 @@ export default function Karyakram() {
     <RoseSpray className="karyakram-flowers karyakram-flowers-bottom" />
     <header className="karyakram-header">
       <p className="ganesh-invocation">श्री गणेशाय नमः</p>
-      <p className="karyakram-eyebrow" lang="en">A celebration of love & togetherness</p>
-      <h2 id="schedule-heading">मांगलिक कार्यक्रम</h2>
-      <p className="karyakram-subtitle" lang="en">The Wedding Celebrations</p>
-      <span className="karyakram-flourish" aria-hidden="true">✦</span>
       <div className="sacred-verse">{wedding.ganeshVerse.map(line => <p key={line}>{line}</p>)}</div>
+      <h2 id="schedule-heading">मांगलिक कार्यक्रम</h2>
+      <span className="karyakram-flourish" aria-hidden="true">✦</span>
     </header>
     <ol className="karyakram-events">
       {wedding.timeline.map((event, index) => <li className="karyakram-event" key={event.title}>
@@ -50,10 +50,10 @@ export default function Karyakram() {
         <div className="karyakram-copy">
           <p className="karyakram-script" lang="en">{ceremonyNames[index]}</p>
           <h3>{event.title}</h3>
-          <span className="karyakram-small-flourish" aria-hidden="true">♥</span>
           <EventDate date={event.date} />
           {event.time && <p className="karyakram-time">{event.time}</p>}
           {event.note && <p className="karyakram-venue">{event.note}</p>}
+          <span className="karyakram-event-divider" aria-hidden="true">✦</span>
         </div>
       </li>)}
     </ol>

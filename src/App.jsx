@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { wedding as w } from "./config.js";
 import InvitationCover from "./components/InvitationCover.jsx";
 import Countdown from "./components/Countdown.jsx";
@@ -22,9 +22,43 @@ function Lines({ lines }) {
 
 export default function App() {
   const [stage, setStage] = useState("closed");
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const audioRef = useRef(null);
+  const musicPreference = useRef(null);
   const openingTimer = useRef(null);
   const heroRef = useRef(null);
+  const playMusic = () => {
+    if (!audioRef.current) return;
+    audioRef.current.volume = 0.4;
+    audioRef.current.play()?.catch(() => {
+      // A scroll may not grant audio permission; the music button can retry.
+    });
+  };
+  const toggleMusic = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (!audio.paused) {
+      musicPreference.current = false;
+      audio.pause();
+    } else {
+      musicPreference.current = true;
+      playMusic();
+    }
+  };
   useEffect(() => () => clearTimeout(openingTimer.current), []);
+  useLayoutEffect(() => {
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    return () => { window.history.scrollRestoration = previousRestoration; };
+  }, []);
+  useLayoutEffect(() => {
+    // Reveal the first section before painting, even after a refresh farther down.
+    if (stage === "revealing" || stage === "open") {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+    if (stage === "open") heroRef.current?.focus({ preventScroll: true });
+  }, [stage]);
   useEffect(() => {
     if (stage !== "opening") return;
     // A stalled download or interrupted animation must never keep scrolling locked.
@@ -46,11 +80,9 @@ export default function App() {
     if (stage !== "open") document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = previousOverflow; };
   }, [stage]);
-  useEffect(() => {
-    if (stage === "open") heroRef.current?.focus({ preventScroll: true });
-  }, [stage]);
   const open = () => {
     if (stage !== "closed") return;
+    if (musicPreference.current !== false) playMusic();
     setStage("opening");
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       openingTimer.current = setTimeout(() => setStage("open"), 150);
@@ -60,6 +92,19 @@ export default function App() {
   return (
     <div className={`app marathi-invitation experience-${stage}`} lang="mr">
       <TextureDefs />
+      <audio ref={audioRef} src="/assets/music/o-sanam.mp3" loop preload="metadata"
+        onPlaying={() => setMusicPlaying(true)} onPause={() => setMusicPlaying(false)}
+        onError={() => setMusicPlaying(false)} />
+      <button type="button" className={`music-toggle${musicPlaying ? " is-playing" : ""}`}
+        onClick={toggleMusic} aria-label={musicPlaying ? "Mute music" : "Play music"}
+        aria-pressed={musicPlaying} title={musicPlaying ? "Mute music" : "Play music"}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M9 17V5l12-2v12M9 8l12-2" />
+          <ellipse cx="6" cy="17" rx="3" ry="2.5" />
+          <ellipse cx="18" cy="15" rx="3" ry="2.5" />
+          {!musicPlaying && <path d="m3 3 18 18" />}
+        </svg>
+      </button>
       <main className="page">
         <section id="page-1" className="hero" ref={heroRef} tabIndex={-1} aria-label="शुभ विवाह — प्रथम पृष्ठ">
           <div className="velvet folio-open">
@@ -76,7 +121,7 @@ export default function App() {
                   <span className="marathi-sang">संग</span>
                   <h2>{w.groomMarathi}</h2>
                 </div>
-                <p className="english-couple script" lang="en">{w.bride} &amp; {w.groom}</p>
+                <p className="english-couple script" lang="en"><span>{w.bride}</span>{" "}<span className="english-couple-amp">&amp;</span>{" "}<span>{w.groom}</span></p>
                 <div className="host-details">
                   <h3>निमंत्रक:</h3>
                   <Lines lines={w.hosts} />
@@ -86,13 +131,12 @@ export default function App() {
               </div>
             </div>
           </div>
-          <p className="scroll-invitation">मंगल निमंत्रण पाहण्यासाठी खाली सरकवा <span aria-hidden="true">↓</span></p>
         </section>
 
         <div className="event-details" aria-hidden={stage !== "open"} {...(stage !== "open" ? { inert: "" } : {})}>
           <section className="invitation-sheet countdown-section" aria-labelledby="countdown-heading">
             <h2 id="countdown-heading" className="sheet-heading" lang="en">Countdown</h2>
-            <p className="countdown-date">5 डिसेंबर 2026 · सायं 5:30 वाजता</p>
+            <p className="countdown-date" lang="hi">5 दिसंबर 2026 · शाम 5:30 बजे</p>
             <div lang="en"><Countdown target={w.dateISO} /></div>
           </section>
           <Karyakram />

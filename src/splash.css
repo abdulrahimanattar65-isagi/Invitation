@@ -1,6 +1,28 @@
 /* High-resolution opening stationery with a quiet, full-screen surround. */
+.music-toggle {
+  position: fixed;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 11px;
+  border: 1px solid #ae8e558c;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fffdf5, #f0e1c5);
+  color: #8b6a37;
+  box-shadow: 0 3px 14px #73593624, inset 0 1px 0 #fff;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.music-toggle svg { width: 24px; height: 24px; }
+.music-toggle:hover { background: #f0e1c5; color: #654a22; }
+.music-toggle.is-playing { border-color: #8b6a37; color: #654a22; }
+.music-toggle:focus-visible { outline: 2px solid #8b6a37; outline-offset: 4px; }
 .marathi-invitation .gate-cover {
-  background: #eee1ca;
+  background: #f3e5ce;
   height: 100svh;
   min-height: 100svh;
   isolation: isolate;
@@ -8,15 +30,14 @@
 .marathi-invitation .gate-cover::before {
   content: "";
   position: absolute;
-  inset: -40px;
+  inset: 0;
   z-index: -2;
-  background: linear-gradient(#fff8e8b8, #f5e6cece), url('/assets/gate/poster-hq.png') center / cover;
-  filter: blur(24px);
+  background: none;
   pointer-events: none;
 }
 .marathi-invitation .gate-cover::after {
   content: "";
-  display: block;
+  display: none;
   position: absolute;
   inset: 22px;
   z-index: -1;
@@ -26,27 +47,30 @@
   pointer-events: none;
 }
 .gate-cover .gate-scene {
-  width: min(100vw, calc(100svh * 480 / 854));
-  height: auto;
+  width: 100vw;
+  aspect-ratio: auto;
+  height: 100svh;
   max-height: 100svh;
-  box-shadow: 0 0 0 1px #c7ac7733, 0 18px 90px #73593626;
+  box-shadow: none;
   overflow: hidden;
   background: #f3e5ce;
 }
-.gate-cover .gate-video { position: relative; z-index: 0; }
+.gate-cover .gate-video { position: relative; z-index: 0; object-fit: cover; object-position: center; filter: none; }
 .gate-poster {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   z-index: 1;
   pointer-events: none;
   opacity: 1;
-  transition: opacity .65s ease;
+  transition: opacity .12s ease;
 }
 .gate-scene.is-playing .gate-poster { opacity: 0; }
 .gate-cover .gate-initials {
+  top: calc(50% - max(13.1svh, 23.2889vw));
   z-index: 2;
   font-weight: 400;
   color: #77531d;

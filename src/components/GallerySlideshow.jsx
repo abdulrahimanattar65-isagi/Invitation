@@ -24,7 +24,7 @@ export default function GallerySlideshow({ photos }) {
 
   useEffect(() => {
     if (count < 2 || paused || hovered || focused || !visible || reducedMotion) return;
-    const timer = window.setInterval(() => setCurrent(index => (index + 1) % count), 4500);
+    const timer = window.setInterval(() => setCurrent(index => (index + 1) % count), 2000);
     return () => window.clearInterval(timer);
   }, [count, paused, hovered, focused, visible, reducedMotion, current]);
 

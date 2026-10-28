@@ -160,6 +160,10 @@
 .marathi-invitation .countdown-section{padding-top:16px;padding-bottom:12px}
 .marathi-invitation .countdown-section .sheet-heading{margin-top:0}
 .marathi-invitation .countdown-date{margin-bottom:12px}
+.marathi-invitation .countdown-section .sheet-heading{color:#ad392f;text-shadow:0 1px 0 #fffdf5}
+.marathi-invitation .countdown-section .countdown-date{color:#a34e24;font-weight:600}
+.marathi-invitation .countdown-section .cd-num{color:#ad392f;font-weight:600;text-shadow:0 1px 0 #fffdf5}
+.marathi-invitation .countdown-section .cd-label{color:#a34e24;font-weight:600;opacity:1}
 .marathi-invitation .countdown-section + .invitation-sheet{padding-top:24px}
 .marathi-invitation .ceremony-photo-card{border:0;box-shadow:none}
 .marathi-invitation .reception-invitation{background:none;border:0}
@@ -169,11 +173,10 @@
   .marathi-invitation .page::before{background:linear-gradient(90deg,transparent,#fff9efe6 17%,#fff9efe6 83%,transparent)}
 }
 
-/* Bring the scroll prompt directly below the first-page details. */
-.marathi-invitation .hero{row-gap:8px}
+/* Join the first-page details directly to the countdown. */
+.marathi-invitation .hero{row-gap:0}
 .marathi-invitation .hero .folio-open{min-height:0}
-.marathi-invitation .hero .folio-open .acrylic{min-height:0;padding-bottom:16px}
-.marathi-invitation .scroll-invitation{margin:8px 0 16px}
+.marathi-invitation .hero .folio-open .acrylic{min-height:0;padding-bottom:0}
 
 /* Arched event frames, sized consistently across all ceremony images. */
 .marathi-invitation .ceremony-schedule li.ceremony-with-photo{margin:20px 0 38px}
@@ -242,7 +245,7 @@
 /* One paper frame displays the entire gallery as a fading slideshow. */
 .gallery-slideshow{width:min(100%,420px);margin:34px auto 0;padding:8px 4px}
 .gallery-slideshow-frame{aspect-ratio:4/5;touch-action:pan-y;user-select:none}
-.gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;pointer-events:none}
+.gallery-slide{position:absolute;inset:0;opacity:0;transition:opacity .55s ease;pointer-events:none}
 .gallery-slide.is-active{opacity:1}
 .gallery-slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .gallery-slide-caption{font-style:italic;margin-top:14px;color:var(--ink-muted);font-size:1.05rem}
@@ -256,3 +259,96 @@
 @media(max-width:599px){.gallery-slideshow{max-width:330px}.gallery-slideshow-controls{gap:6px}}
 @media(prefers-reduced-motion:reduce){.gallery-slide{transition:none}}
 .reception-invitation .reception-heading{font-size:1.15rem;color:var(--champagne-dark);margin-bottom:10px;text-wrap:balance}
+
+/* Prominent family names and contact details on the opening invitation page. */
+.marathi-invitation .hero .wedding-kicker {
+  font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+  font-weight: 600;
+  color: var(--champagne-dark);
+  line-height: 1.8;
+  margin: 0 0 10px;
+}
+.marathi-invitation .hero .wedding-date {
+  margin: 8px 0 18px;
+  color: #a34e24;
+  font-size: clamp(1.1rem, 3.7vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.8;
+}
+.marathi-invitation .hero .marathi-couple {
+  width: 100%;
+  margin: 0;
+}
+.marathi-invitation .hero .marathi-couple h2 {
+  color: #ad392f;
+  font-family: "Noto Serif Devanagari", "Nirmala UI", "Mangal", serif;
+  font-size: clamp(2rem, 7.2vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.7;
+  margin: 0;
+  text-shadow: 0 1px 0 #fffdf5;
+}
+.marathi-invitation .hero .marathi-couple .marathi-sang {
+  margin: 3px 0;
+  color: #a34e24;
+  font-size: clamp(1.05rem, 3.8vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.7;
+}
+.marathi-invitation .hero .english-couple {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: .28em;
+  row-gap: 0;
+  max-width: 100%;
+  color: var(--champagne-dark);
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.15rem, 7.5vw, 3.35rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.6;
+  margin: 18px 0 28px;
+  padding-inline: .2em;
+  text-shadow: 0 1px 0 #fffdf5;
+}
+.marathi-invitation .hero .english-couple > span { white-space: nowrap; }
+.marathi-invitation .hero .english-couple .english-couple-amp {
+  color: var(--champagne);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: .65em;
+  font-style: italic;
+}
+.marathi-invitation .hero .host-details {
+  width: 100%;
+  max-width: 36ch;
+  color: #73412d;
+  font-size: clamp(1.05rem, 3.7vw, 1.3rem);
+  font-weight: 500;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+.marathi-invitation .hero .host-details h3 {
+  color: #ad392f;
+  font-size: clamp(1.3rem, 4.5vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.8;
+  margin: 0 0 12px;
+}
+.marathi-invitation .hero .host-details p { margin: 8px 0; }
+.marathi-invitation .hero .host-details p:first-of-type {
+  color: #91422a;
+  font-weight: 600;
+}
+.marathi-invitation .hero .host-details .phone-links {
+  margin: 18px 0 0;
+  color: #91422a;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.15rem, 4vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.8;
+  white-space: normal;
+  font-variant-numeric: lining-nums;
+}
+.marathi-invitation .hero .phone-links > span { display: inline-block; }

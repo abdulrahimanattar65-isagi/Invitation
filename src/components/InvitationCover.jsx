@@ -3,23 +3,47 @@ import { wedding as w } from "../config.js";
 
 export default function InvitationCover({ stage, onOpen, onOpened, onRevealComplete }) {
   const videoRef = useRef(null);
+  const startedRef = useRef(false);
+  const touchStartRef = useRef(null);
+  const wheelDistanceRef = useRef(0);
   const [failed, setFailed] = useState(false);
   const [playing, setPlaying] = useState(false);
 
   const enter = () => {
-    if (stage !== "closed") return;
+    if (stage !== "closed" || startedRef.current) return;
+    startedRef.current = true;
     onOpen();
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (failed || !videoRef.current) {
       onOpened();
       return;
     }
-    // Start directly from the tap so mobile browsers permit inline playback.
+    // Start directly from the gesture so mobile browsers permit inline playback.
     videoRef.current.play()?.catch(() => onOpened());
   };
 
   return (
     <section className={`invitation-cover gate-cover gate-${stage}`} aria-label="Wedding invitation gate"
+      onClick={enter}
+      onWheel={event => {
+        if (stage !== "closed") return;
+        wheelDistanceRef.current += Math.abs(event.deltaY);
+        if (wheelDistanceRef.current >= 12) enter();
+      }}
+      onTouchStart={event => {
+        touchStartRef.current = stage === "closed" && event.touches.length === 1
+          ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
+          : null;
+      }}
+      onTouchMove={event => {
+        const start = touchStartRef.current;
+        if (!start || event.touches.length !== 1) return;
+        const vertical = Math.abs(event.touches[0].clientY - start.y);
+        const horizontal = Math.abs(event.touches[0].clientX - start.x);
+        if (vertical >= 24 && vertical > horizontal) enter();
+      }}
+      onTouchEnd={() => { touchStartRef.current = null; }}
+      onTouchCancel={() => { touchStartRef.current = null; }}
       onTransitionEnd={event => {
         if (stage === "revealing" && event.target === event.currentTarget && event.propertyName === "opacity") onRevealComplete();
       }}>
@@ -27,8 +51,8 @@ export default function InvitationCover({ stage, onOpen, onOpened, onRevealCompl
         <video
           ref={videoRef}
           className="gate-video"
-          src="/assets/gate/opening.mp4"
-          poster="/assets/gate/poster.jpg"
+          src="/assets/gate/opening-hd.mp4"
+          poster="/assets/gate/poster-hq.png"
           preload="auto"
           playsInline
           muted
@@ -43,7 +67,7 @@ export default function InvitationCover({ stage, onOpen, onOpened, onRevealCompl
           aria-hidden="true"
         />
         <img className="gate-poster" src="/assets/gate/poster-hq.png" alt="" aria-hidden="true" fetchPriority="high" decoding="async"
-          onError={event => { if (event.currentTarget.src.endsWith("poster-hq.png")) event.currentTarget.src = "/assets/gate/poster.jpg"; }} />
+          onError={event => { if (event.currentTarget.src.endsWith("poster-hq.png")) event.currentTarget.src = "/assets/gate/poster-hd.jpg"; }} />
         <div className="gate-initials" aria-label={`${w.bride} and ${w.groom}`} lang="en">{w.initials.replace("&", " & ")}</div>
         {stage === "closed" && <button type="button" className="gate-enter" onClick={enter} aria-label={`Open ${w.bride} and ${w.groom}'s wedding invitation`}>
           <span className="gate-welcome" lang="en">Together with our families</span>
