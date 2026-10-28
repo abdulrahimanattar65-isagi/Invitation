@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { wedding as w } from "./config.js";
 import InvitationCover from "./components/InvitationCover.jsx";
 import Countdown from "./components/Countdown.jsx";
-import CeremonyPhotoCard from "./components/CeremonyPhotoCard.jsx";
+import Karyakram from "./components/Karyakram.jsx";
 import BlessingIntro from "./components/BlessingIntro.jsx";
 import GallerySlideshow from "./components/GallerySlideshow.jsx";
 import TextureDefs from "./components/TextureDefs.jsx";
@@ -95,21 +95,7 @@ export default function App() {
             <p className="countdown-date">5 डिसेंबर 2026 · सायं 5:30 वाजता</p>
             <div lang="en"><Countdown target={w.dateISO} /></div>
           </section>
-          <section id="page-4" className="invitation-sheet" aria-labelledby="schedule-heading">
-            <p className="ganesh-invocation">श्री गणेशाय नमः</p>
-            <div className="sacred-verse"><Lines lines={w.ganeshVerse} /></div>
-            <h2 id="schedule-heading" className="sheet-heading">🚩 मांगलिक कार्यक्रम 🚩</h2>
-            <ol className="ceremony-schedule">{w.timeline.map(event => (
-              <li key={event.title} className={event.images?.length ? "ceremony-with-photo" : undefined}>
-                {event.images?.length ? <CeremonyPhotoCard event={event} /> : <>
-                  <h3>{event.title}</h3>
-                  <div>{event.date && <p>{event.date}</p>}{event.time && <p className="ceremony-time">{event.time}</p>}{event.note && <p className="ceremony-note">{event.note}</p>}</div>
-                </>}
-              </li>
-            ))}</ol>
-            <PageImages page={4} />
-
-          </section>
+          <Karyakram />
           <section id="from-the-couple" className="invitation-sheet couple-message-section" lang="en" aria-labelledby="couple-message-heading">
             <p className="couple-message-kicker">From the</p>
             <h2 id="couple-message-heading" className="couple-message-heading">Bride and Groom</h2>
@@ -119,7 +105,19 @@ export default function App() {
           </section>
           <section className="invitation-sheet" aria-labelledby="reception-heading">
             <div className="reception-invitation"><h2 id="reception-heading" className="reception-heading">आशीर्वाद समारोह एवं प्रीतिभोज आमंत्रण :</h2><p>{w.reception}</p></div>
-            <div className="wedding-location"><p className="wedding-kicker">विवाह स्थल</p><h3>{w.venue}</h3><p>{w.address}</p><a className="location-link" href={w.mapUrl} target="_blank" rel="noreferrer">नकाशावर शोधा <span aria-hidden="true">↗</span></a></div>
+            <div className="wedding-location">
+              <p className="wedding-kicker">विवाह स्थल</p>
+              <h3>{w.venue}</h3>
+              <p>{w.address}</p>
+              <a className="location-link" href={w.mapUrl} target="_blank" rel="noreferrer" aria-label="दिशा देखें — Google Maps में विवाह स्थल तक का रास्ता खोलें">
+                <span className="location-pin" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                </span>
+                <span>दिशा देखें <span className="location-map-label" lang="en">Google Maps</span></span>
+                <span className="location-arrow" aria-hidden="true">↗</span>
+              </a>
+              <p className="location-hint">यहाँ टैप करें और विवाह स्थल तक का रास्ता देखें</p>
+            </div>
           </section>
         </div>
       </main>

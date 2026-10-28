@@ -52,8 +52,18 @@
 .reception-invitation{padding:26px 18px;background:#efe4d355;border-block:1px solid var(--hairline);text-wrap:balance}
 .wedding-location{margin-top:32px}
 .wedding-location h3{font-size:clamp(1.4rem,4vw,1.9rem);color:var(--champagne-dark);margin:8px 0}
-.location-link{display:inline-block;margin-top:20px;padding:9px 24px;border:1px solid var(--hairline);color:var(--champagne-dark);text-decoration:none;font-size:.9rem}
-.location-link:hover{background:#efe4d3}
+.location-link{display:inline-flex;align-items:center;gap:16px;max-width:100%;margin-top:22px;padding:14px 22px;border:1px solid #ae8e5570;border-radius:12px;background:linear-gradient(135deg,#fffdf7,#f1e5ce);box-shadow:0 5px 18px #8b6a3712;color:var(--champagne-dark);text-decoration:none;font-size:1rem;line-height:1.6;text-align:left;transition:background .25s,box-shadow .25s}
+.location-link:hover{background:#efe4d3;box-shadow:0 6px 22px #8b6a3726}
+.location-link:focus-visible{outline:2px solid var(--champagne-dark);outline-offset:5px}
+.location-pin{position:relative;display:grid;place-items:center;flex-shrink:0;width:42px;height:42px;border-radius:50%;background:#e9d9b9}
+.location-pin::before{content:"";position:absolute;inset:0;border:1px solid #ae8e55;border-radius:inherit;animation:mapPinPulse 2.8s ease-out infinite;pointer-events:none}
+.location-pin svg{width:23px;height:23px}
+.location-map-label{display:block;font-family:Georgia,serif;font-size:.72rem;letter-spacing:.04em;color:var(--ink-muted)}
+.location-arrow{font-family:Georgia,serif;font-size:1.4rem;animation:mapArrowNudge 2.8s ease-in-out infinite}
+.location-hint{max-width:32ch;margin:12px auto 0;color:var(--ink-muted);font-size:.78rem;line-height:1.8;text-wrap:balance}
+@keyframes mapPinPulse{0%{transform:scale(1);opacity:.55}65%,100%{transform:scale(1.5);opacity:0}}
+@keyframes mapArrowNudge{0%,65%,100%{transform:translate(0,0)}35%{transform:translate(3px,-3px)}}
+@media(prefers-reduced-motion:reduce){.location-pin::before,.location-arrow{animation:none}.location-pin::before{display:none}}
 .page-number{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);font-family:Georgia,serif;font-size:.75rem;color:var(--ink-muted);letter-spacing:.15em}
 .invitation-images{display:grid;gap:16px;width:100%;margin:26px auto 0}
 .invitation-images img{display:block;max-width:100%;width:100%;height:auto;border-radius:3px}

@@ -8,4 +8,5 @@ import "./cover.css";
 import "./cream-theme.css";
 import "./floral-reference.css";
 import "./invitation-pages.css";
+import "./splash.css";
 createRoot(document.getElementById("root")).render(<App />);

@@ -1,4 +1,4 @@
-﻿// Invitation copy supplied by the family. Dates use day-month-year.
+// Invitation copy supplied by the family. Dates use day-month-year.
 export const wedding = {
   initials: "E&Y",
   bride: "Ekta",
@@ -9,7 +9,7 @@ export const wedding = {
   dateDisplay: "5-12-2026",
   venue: "वंडरला रिसॉर्ट",
   address: "बिड़दी, मैसूर रोड, बेंगलुरु.",
-  mapUrl: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Wonderla Resort, Bidadi, Mysore Road, Bengaluru"),
+  mapUrl: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("Wonderla Resort, Bidadi, Mysore Road, Bengaluru"),
   hosts: ["शा जवेरीलालजी महेंद्रकुमार विनायकिया", "हुबली / दूँदाड़ा", "तेज ट्रेडर्स ( अंकल ग्रुप हुबली )"],
   phones: ["9448116626", "9242239565"],
   invocations: ["श्री महावीराय नमः", "श्री गणेशाय नमः", "श्री अंबेमाताय नमः"],
@@ -33,7 +33,7 @@ export const wedding = {
   timeline: [
     { title: "पाठ बिठाई", date: "तिथि शीघ्र सूचित की जाएगी", note: "स्थान : निवास स्थान", images: [{ src: "/assets/ceremonies/path-bithai.jpg", alt: "पाठ बिठाई के लिए फूलों, गुलाबी पर्दों और दीपों से सजा झील के किनारे का मंडप", width: 1600, height: 900 }] },
     { title: "बंदोली", date: "3-12-26", time: "शाम 5 बजे", note: "स्थान : विवाह स्थल", photoLayout: "portrait", photoEyebrow: "स्नेह और उल्लास", images: [{ src: "/assets/ceremonies/bandoli.png", alt: "घोड़ों पर सवार वर-वधू, ढोल और फूलों के साथ बंदोली का उत्सव", width: 1024, height: 1536 }] },
-    { title: "सगाई", date: "4-12-26", time: "सुबह 9 बजे", photoEyebrow: "शुभ सगाई", photoCopyPosition: "bottom", images: [{ src: "/assets/ceremonies/sagai.png", alt: "फूलों से सजे मंडप में अंगूठी पहनाते वर-वधू का सगाई समारोह", width: 1536, height: 1024 }] },
+    { title: "सगाई", date: "4-12-26", time: "सुबह 9 बजे", photoEyebrow: "", photoCopyPosition: "bottom", images: [{ src: "/assets/ceremonies/sagai.png", alt: "फूलों से सजे मंडप में अंगूठी पहनाते वर-वधू का सगाई समारोह", width: 1536, height: 1024 }] },
     { title: "संगीत", date: "4-12-26", time: "शाम 6 बजे", photoLayout: "portrait", photoEyebrow: "सुरों और खुशियों की शाम", images: [{ src: "/assets/ceremonies/sangeet.png", alt: "फूलों और रोशनी से सजे महल में ढोल और परिवार के साथ नृत्य करते वर-वधू", width: 1122, height: 1402 }] },
     { title: "कार्निवल", date: "5-12-26", time: "सुबह 9 बजे", photoLayout: "portrait", photoEyebrow: "रंग और उमंग", images: [{ src: "/assets/ceremonies/carnival.png", alt: "फूलों और लालटेन से सजे कार्निवल में वर-वधू, झूला, सजा ऊँट और लोक संगीतकार", width: 1122, height: 1402 }] },
     { title: "बारात स्वागत", date: "5-12-26", time: "दोपहर 4 बजे", photoEyebrow: "सुस्वागतम्", photoCopyPosition: "bottom", images: [{ src: "/assets/ceremonies/baraat.png", alt: "सजे हुए महल के द्वार पर ढोल और शहनाई के साथ घोड़े पर सवार वर की बारात का स्वागत", width: 1672, height: 941 }] },

@@ -1,0 +1,110 @@
+/* High-resolution opening stationery with a quiet, full-screen surround. */
+.marathi-invitation .gate-cover {
+  background: #eee1ca;
+  height: 100svh;
+  min-height: 100svh;
+  isolation: isolate;
+}
+.marathi-invitation .gate-cover::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  z-index: -2;
+  background: linear-gradient(#fff8e8b8, #f5e6cece), url('/assets/gate/poster-hq.png') center / cover;
+  filter: blur(24px);
+  pointer-events: none;
+}
+.marathi-invitation .gate-cover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 22px;
+  z-index: -1;
+  border: 1px solid #ad8b5150;
+  background: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+.gate-cover .gate-scene {
+  width: min(100vw, calc(100svh * 480 / 854));
+  height: auto;
+  max-height: 100svh;
+  box-shadow: 0 0 0 1px #c7ac7733, 0 18px 90px #73593626;
+  overflow: hidden;
+  background: #f3e5ce;
+}
+.gate-cover .gate-video { position: relative; z-index: 0; }
+.gate-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .65s ease;
+}
+.gate-scene.is-playing .gate-poster { opacity: 0; }
+.gate-cover .gate-initials {
+  z-index: 2;
+  font-weight: 400;
+  color: #77531d;
+  text-shadow: 0 1px 1px #fff1bb;
+  font-size: clamp(1.5rem, 7cqw, 2.75rem);
+  letter-spacing: .015em;
+}
+.gate-cover .gate-enter {
+  z-index: 3;
+  gap: 0;
+  padding: 0 22px max(5.5%, env(safe-area-inset-bottom));
+  background: linear-gradient(transparent 66%, #fff8eab3 78%, #fff6e5f5 94%);
+  color: #795a32;
+}
+.gate-welcome {
+  font: 400 clamp(.56rem, 2.1cqw, .75rem)/1.6 "Cinzel", Georgia, serif;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.gate-cover .gate-enter-names {
+  font: 400 clamp(2.15rem, 9.5cqw, 3.5rem)/1.5 "Great Vibes", cursive;
+  color: #8a6335;
+  margin-block: 6px 10px;
+  letter-spacing: .015em;
+  word-spacing: .08em;
+  padding-inline: .2em;
+  text-shadow: 0 1px 0 #fffcf5;
+}
+.gate-enter-names > span { display: inline-block; margin-inline: .3em; font-family: "Cormorant Garamond", Georgia, serif; font-size: .6em; font-style: italic; }
+.gate-date {
+  font: 400 clamp(.65rem, 2.5cqw, .9rem)/1.5 "Cinzel", Georgia, serif;
+  letter-spacing: .2em;
+  margin: 0 0 18px;
+}
+.gate-date > span { margin-inline: .35em; color: #aa8750; }
+.gate-cover .gate-enter-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 18px 8px;
+  border: 1px solid #b595606b;
+  border-radius: 999px;
+  background: linear-gradient(125deg, #fffdf3ee, #f5e7cfee);
+  box-shadow: 0 4px 16px #795b2912, inset 0 1px 0 #fff;
+  font-size: clamp(.62rem, 2.55cqw, .86rem);
+  color: #715332;
+  transition: border-color .2s, box-shadow .2s;
+}
+.gate-enter-label svg { width: 18px; height: 18px; flex-shrink: 0; transition: transform .25s ease; }
+.gate-enter:hover .gate-enter-label { border-color: #967239; box-shadow: 0 5px 20px #795b2926; }
+.gate-enter:hover .gate-enter-label svg { transform: translateX(3px); }
+.gate-cover .gate-enter:focus-visible { outline: 2px solid #8d682e; outline-offset: -8px; }
+.gate-cover .gate-skip { border-radius: 999px; backdrop-filter: blur(8px); }
+@media (max-width: 599px) {
+  .marathi-invitation .gate-cover::after { display: none; }
+  .gate-date { margin-bottom: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate-poster,.gate-enter-label,.gate-enter-label svg { transition: none; }
+}

@@ -26,7 +26,7 @@ export default function CeremonyPhotoCard({ event }) {
         {event.images.map(photo => <div className="ceremony-photo-slide" key={photo.src}><img src={photo.src} alt={photo.alt} loading="lazy" width={photo.width || 1672} height={photo.height || 941} /></div>)}
       </div>
       <div className={`ceremony-photo-copy ${event.photoCopyPosition === "bottom" ? "ceremony-photo-copy-bottom" : ""}`}>
-        <p className="ceremony-photo-eyebrow">{event.photoEyebrow || "मंगल आरंभ"}</p>
+        {event.photoEyebrow !== "" && <p className="ceremony-photo-eyebrow">{event.photoEyebrow || "मंगल आरंभ"}</p>}
         <h3>{event.title}</h3>
         {event.date && <p className="ceremony-photo-date">{event.date}</p>}
         {event.time && <p>{event.time}</p>}
