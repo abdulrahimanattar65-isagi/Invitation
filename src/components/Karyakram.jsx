@@ -1,7 +1,7 @@
 import { wedding } from "../config.js";
 import "../karyakram.css";
 
-const ceremonyNames = ["Path Bithai", "Bandoli", "Sagai", "Sangeet", "Carnival", "Baraat", "Varmala", "Reception", "Panigrahan"];
+const ceremonyNames = ["Path Bithai", "Bandoli", "Sagai", "Sajjan Goth", "Sangeet", "Carnival", "Baraat", "Varmala", "Reception", "Panigrahan"];
 
 function RoseSpray({ className }) {
   return <svg className={className} viewBox="0 0 260 240" fill="none" aria-hidden="true">
@@ -24,7 +24,7 @@ function EventDate({ date }) {
   const parts = date?.match(/^(\d{1,2})-(\d{1,2})-(\d{2}|\d{4})$/);
   if (!parts) return date ? <p className="karyakram-date-pending">{date}</p> : null;
   const year = parts[3].length === 2 ? `20${parts[3]}` : parts[3];
-  const month = new Intl.DateTimeFormat("hi-IN", { month: "long", timeZone: "UTC" })
+  const month = new Intl.DateTimeFormat("en-IN", { month: "long", timeZone: "UTC" })
     .format(new Date(Date.UTC(Number(year), Number(parts[2]) - 1, 1)));
   return <time className="karyakram-date" dateTime={`${year}-${parts[2].padStart(2, "0")}-${parts[1].padStart(2, "0")}`}>
     <span className="karyakram-day">{parts[1].padStart(2, "0")}</span>
@@ -37,9 +37,9 @@ export default function Karyakram() {
     <RoseSpray className="karyakram-flowers karyakram-flowers-top" />
     <RoseSpray className="karyakram-flowers karyakram-flowers-bottom" />
     <header className="karyakram-header">
-      <p className="ganesh-invocation">श्री गणेशाय नमः</p>
-      <div className="sacred-verse">{wedding.ganeshVerse.map(line => <p key={line}>{line}</p>)}</div>
-      <h2 id="schedule-heading">मांगलिक कार्यक्रम</h2>
+      <p className="ganesh-invocation" lang="hi">श्री गणेशाय नमः</p>
+      <div className="sacred-verse" lang="hi">{wedding.ganeshVerse.map(line => <p key={line}>{line}</p>)}</div>
+      <h2 id="schedule-heading">Wedding Celebrations</h2>
       <span className="karyakram-flourish" aria-hidden="true">✦</span>
     </header>
     <ol className="karyakram-events">
@@ -50,6 +50,7 @@ export default function Karyakram() {
         <div className="karyakram-copy">
           <p className="karyakram-script" lang="en">{ceremonyNames[index]}</p>
           <h3>{event.title}</h3>
+          {event.weekday && <p className="karyakram-weekday">{event.weekday}</p>}
           <EventDate date={event.date} />
           {event.time && <p className="karyakram-time">{event.time}</p>}
           {event.note && <p className="karyakram-venue">{event.note}</p>}
@@ -57,6 +58,6 @@ export default function Karyakram() {
         </div>
       </li>)}
     </ol>
-    <footer className="karyakram-footer"><span aria-hidden="true">✦</span><p>आपकी उपस्थिति ही हमारा सौभाग्य है</p></footer>
+    <footer className="karyakram-footer"><span aria-hidden="true">✦</span><p>Your presence will be our greatest joy</p></footer>
   </section>;
 }

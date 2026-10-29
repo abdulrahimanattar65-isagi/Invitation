@@ -90,7 +90,7 @@ export default function App() {
   };
 
   return (
-    <div className={`app marathi-invitation experience-${stage}`} lang="mr">
+    <div className={`app marathi-invitation english-invitation experience-${stage}`} lang="en">
       <TextureDefs />
       <audio ref={audioRef} src="/assets/music/o-sanam.mp3" loop preload="metadata"
         onPlaying={() => setMusicPlaying(true)} onPause={() => setMusicPlaying(false)}
@@ -106,24 +106,23 @@ export default function App() {
         </svg>
       </button>
       <main className="page">
-        <section id="page-1" className="hero" ref={heroRef} tabIndex={-1} aria-label="शुभ विवाह — प्रथम पृष्ठ">
+        <section id="page-1" className="hero" ref={heroRef} tabIndex={-1} aria-label="Wedding invitation — first page">
           <div className="velvet folio-open">
             {stage !== "open" && <InvitationCover stage={stage} onOpen={open} onOpened={() => setStage(current => current === "opening" ? "revealing" : current)} onRevealComplete={() => setStage(current => current === "revealing" ? "open" : current)} />}
             <div className="acrylic">
               <EmbossedFrame />
               <div className="hero-copy">
                 <BlessingIntro />
-                <p className="wedding-kicker">सस्नेह निमंत्रण</p>
-                <h1 className="marathi-title">शुभ विवाह</h1>
-                <p className="wedding-date">दिनांक : {w.dateDisplay}</p>
+                <p className="wedding-kicker">You are cordially invited</p>
+                <h1 className="marathi-title">Wedding Celebration</h1>
+                <p className="wedding-date">Date: {w.dateDisplay}</p>
                 <div className="marathi-couple">
-                  <h2>{w.brideMarathi}</h2>
-                  <span className="marathi-sang">संग</span>
-                  <h2>{w.groomMarathi}</h2>
+                  <h2>{w.bride}</h2>
+                  <span className="marathi-sang">&amp;</span>
+                  <h2>{w.groom}</h2>
                 </div>
-                <p className="english-couple script" lang="en"><span>{w.bride}</span>{" "}<span className="english-couple-amp">&amp;</span>{" "}<span>{w.groom}</span></p>
                 <div className="host-details">
-                  <h3>निमंत्रक:</h3>
+                  <h3>With warm regards from:</h3>
                   <Lines lines={w.hosts} />
                   <p className="phone-links">{w.phones.map((phone, index) => <span key={phone}>{index > 0 && " / "}<a href={`tel:+91${phone}`}>{phone}</a></span>)}</p>
                 </div>
@@ -136,7 +135,7 @@ export default function App() {
         <div className="event-details" aria-hidden={stage !== "open"} {...(stage !== "open" ? { inert: "" } : {})}>
           <section className="invitation-sheet countdown-section" aria-labelledby="countdown-heading">
             <h2 id="countdown-heading" className="sheet-heading" lang="en">Countdown</h2>
-            <p className="countdown-date" lang="hi">5 दिसंबर 2026 · शाम 5:30 बजे</p>
+            <p className="countdown-date">5 December 2026 · 5:30 PM</p>
             <div lang="en"><Countdown target={w.dateISO} /></div>
           </section>
           <Karyakram />
@@ -148,19 +147,23 @@ export default function App() {
             {w.gallery.length > 0 && <GallerySlideshow photos={w.gallery} />}
           </section>
           <section className="invitation-sheet" aria-labelledby="reception-heading">
-            <div className="reception-invitation"><h2 id="reception-heading" className="reception-heading">आशीर्वाद समारोह एवं प्रीतिभोज आमंत्रण :</h2><p>{w.reception}</p></div>
+            <div className="reception-invitation"><h2 id="reception-heading" className="reception-heading">Blessings Ceremony &amp; Wedding Feast</h2><p>{w.reception}</p></div>
             <div className="wedding-location">
-              <p className="wedding-kicker">विवाह स्थल</p>
+              <p className="wedding-kicker">Wedding Venue</p>
               <h3>{w.venue}</h3>
               <p>{w.address}</p>
-              <a className="location-link" href={w.mapUrl} target="_blank" rel="noreferrer" aria-label="दिशा देखें — Google Maps में विवाह स्थल तक का रास्ता खोलें">
+              <a className="location-link" href={w.mapUrl} target="_blank" rel="noreferrer" aria-label="Get directions to the wedding venue in Google Maps">
                 <span className="location-pin" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
                 </span>
-                <span>दिशा देखें <span className="location-map-label" lang="en">Google Maps</span></span>
+                <span>Get Directions <span className="location-map-label" lang="en">Google Maps</span></span>
                 <span className="location-arrow" aria-hidden="true">↗</span>
               </a>
-              <p className="location-hint">यहाँ टैप करें और विवाह स्थल तक का रास्ता देखें</p>
+              <p className="location-hint">Tap here for directions to the wedding venue</p>
+              <div className="rsvp-details" lang="en">
+                <p className="wedding-kicker">RSVP :</p>
+                <p className="phone-links">MAHENDRA KUMAR VINAYAKIYA  <a href="tel:+919448116626">9448116626</a></p>
+              </div>
             </div>
           </section>
         </div>

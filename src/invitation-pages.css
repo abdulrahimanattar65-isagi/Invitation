@@ -61,6 +61,8 @@
 .location-map-label{display:block;font-family:Georgia,serif;font-size:.72rem;letter-spacing:.04em;color:var(--ink-muted)}
 .location-arrow{font-family:Georgia,serif;font-size:1.4rem;animation:mapArrowNudge 2.8s ease-in-out infinite}
 .location-hint{max-width:32ch;margin:12px auto 0;color:var(--ink-muted);font-size:.78rem;line-height:1.8;text-wrap:balance}
+.rsvp-details{margin-top:24px}
+.rsvp-details .phone-links a{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-size:.95rem;font-weight:400;font-style:normal;font-variant-numeric:lining-nums tabular-nums;letter-spacing:.02em;white-space:nowrap}
 @keyframes mapPinPulse{0%{transform:scale(1);opacity:.55}65%,100%{transform:scale(1.5);opacity:0}}
 @keyframes mapArrowNudge{0%,65%,100%{transform:translate(0,0)}35%{transform:translate(3px,-3px)}}
 @media(prefers-reduced-motion:reduce){.location-pin::before,.location-arrow{animation:none}.location-pin::before{display:none}}
@@ -352,3 +354,11 @@
   font-variant-numeric: lining-nums;
 }
 .marathi-invitation .hero .phone-links > span { display: inline-block; }
+
+/* English lettering keeps the existing invitation artwork and spacing. */
+.english-invitation{font-family:"Cormorant Garamond",Georgia,serif}
+.english-invitation [lang="hi"]{font-family:"Noto Serif Devanagari","Nirmala UI","Mangal",serif}
+.english-invitation .hero .marathi-couple h2{font-family:"Cormorant Garamond",Georgia,serif}
+.english-invitation .hero .marathi-title{font-size:clamp(1.65rem,5.5vw,2.8rem);line-height:1.4;text-wrap:balance}
+.english-invitation .hero .host-details{overflow-wrap:normal;word-break:normal;text-wrap:balance}
+.english-invitation .phone-links a{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-style:normal;font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}

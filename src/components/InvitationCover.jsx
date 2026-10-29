@@ -51,8 +51,7 @@ export default function InvitationCover({ stage, onOpen, onOpened, onRevealCompl
         <video
           ref={videoRef}
           className="gate-video"
-          src="/assets/gate/opening-hd.mp4"
-          poster="/assets/gate/poster-hq.png"
+          src="/assets/gate/entrance.mp4"
           preload="auto"
           playsInline
           muted
@@ -66,14 +65,11 @@ export default function InvitationCover({ stage, onOpen, onOpened, onRevealCompl
           onError={() => { setFailed(true); if (stage === "opening") onOpened(); }}
           aria-hidden="true"
         />
-        <img className="gate-poster" src="/assets/gate/poster-hq.png" alt="" aria-hidden="true" fetchPriority="high" decoding="async"
-          onError={event => { if (event.currentTarget.src.endsWith("poster-hq.png")) event.currentTarget.src = "/assets/gate/poster-hd.jpg"; }} />
-        <div className="gate-initials" aria-label={`${w.bride} and ${w.groom}`} lang="en">{w.initials.replace("&", " & ")}</div>
         {stage === "closed" && <button type="button" className="gate-enter" onClick={enter} aria-label={`Open ${w.bride} and ${w.groom}'s wedding invitation`}>
           <span className="gate-welcome" lang="en">Together with our families</span>
           <span className="gate-enter-names" lang="en">{w.bride} <span>&amp;</span> {w.groom}</span>
           <span className="gate-date" lang="en">{w.dateDisplay.split("-").map(part => part.padStart(2, "0")).join(" · ")}</span>
-          <span className="gate-enter-label">निमंत्रण उघडण्यासाठी स्पर्श करा <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" /></svg></span>
+          <span className="gate-enter-label">Tap to open the invitation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true"><path d="M4 12h15m-5-5 5 5-5 5" /></svg></span>
         </button>}
         {stage === "opening" && <button type="button" className="gate-skip" onClick={onOpened}>Skip intro →</button>}
       </div>
