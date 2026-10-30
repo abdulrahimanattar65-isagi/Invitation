@@ -51,7 +51,8 @@ export default function InvitationCover({ stage, onOpen, onOpened, onRevealCompl
         <video
           ref={videoRef}
           className="gate-video"
-          src="/assets/gate/entrance.mp4"
+          src="/assets/gate/opening-hd.mp4"
+          poster="/assets/gate/poster-hq.png"
           preload="auto"
           playsInline
           muted
@@ -65,6 +66,9 @@ export default function InvitationCover({ stage, onOpen, onOpened, onRevealCompl
           onError={() => { setFailed(true); if (stage === "opening") onOpened(); }}
           aria-hidden="true"
         />
+        <img className="gate-poster" src="/assets/gate/poster-hq.png" alt="" aria-hidden="true" fetchPriority="high" decoding="async"
+          onError={event => { if (event.currentTarget.src.endsWith("poster-hq.png")) event.currentTarget.src = "/assets/gate/poster-hd.jpg"; }} />
+        <div className="gate-initials" aria-label={`${w.bride} and ${w.groom}`} lang="en">{w.initials.replace(/[^a-z]/gi, "")}</div>
         {stage === "closed" && <button type="button" className="gate-enter" onClick={enter} aria-label={`Open ${w.bride} and ${w.groom}'s wedding invitation`}>
           <span className="gate-welcome" lang="en">Together with our families</span>
           <span className="gate-enter-names" lang="en">{w.bride} <span>&amp;</span> {w.groom}</span>

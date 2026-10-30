@@ -51,6 +51,7 @@
 .ceremony-note{font-size:.84rem;color:var(--ink-muted)}
 .reception-invitation{padding:26px 18px;background:#efe4d355;border-block:1px solid var(--hairline);text-wrap:balance}
 .wedding-location{margin-top:32px}
+.marathi-invitation .wedding-location > .wedding-kicker{font-size:clamp(1.6rem,5vw,2.2rem);font-weight:600;color:#ad392f;text-shadow:0 1px 0 #fffdf5}
 .wedding-location h3{font-size:clamp(1.4rem,4vw,1.9rem);color:var(--champagne-dark);margin:8px 0}
 .location-link{display:inline-flex;align-items:center;gap:16px;max-width:100%;margin-top:22px;padding:14px 22px;border:1px solid #ae8e5570;border-radius:12px;background:linear-gradient(135deg,#fffdf7,#f1e5ce);box-shadow:0 5px 18px #8b6a3712;color:var(--champagne-dark);text-decoration:none;font-size:1rem;line-height:1.6;text-align:left;transition:background .25s,box-shadow .25s}
 .location-link:hover{background:#efe4d3;box-shadow:0 6px 22px #8b6a3726}
@@ -58,7 +59,8 @@
 .location-pin{position:relative;display:grid;place-items:center;flex-shrink:0;width:42px;height:42px;border-radius:50%;background:#e9d9b9}
 .location-pin::before{content:"";position:absolute;inset:0;border:1px solid #ae8e55;border-radius:inherit;animation:mapPinPulse 2.8s ease-out infinite;pointer-events:none}
 .location-pin svg{width:23px;height:23px}
-.location-map-label{display:block;font-family:Georgia,serif;font-size:.72rem;letter-spacing:.04em;color:var(--ink-muted)}
+.location-link{color:#ad392f;font-weight:700;text-shadow:0 1px 0 #fffdf5}
+.location-map-label{display:block;font-family:Georgia,serif;font-size:.72rem;letter-spacing:.04em;color:#a34e24;font-weight:600}
 .location-arrow{font-family:Georgia,serif;font-size:1.4rem;animation:mapArrowNudge 2.8s ease-in-out infinite}
 .location-hint{max-width:32ch;margin:12px auto 0;color:var(--ink-muted);font-size:.78rem;line-height:1.8;text-wrap:balance}
 .rsvp-details{margin-top:24px}
@@ -260,7 +262,8 @@
 .gallery-slideshow-controls button:focus-visible{outline:2px solid var(--champagne-dark);outline-offset:3px}
 @media(max-width:599px){.gallery-slideshow{max-width:330px}.gallery-slideshow-controls{gap:6px}}
 @media(prefers-reduced-motion:reduce){.gallery-slide{transition:none}}
-.reception-invitation .reception-heading{font-size:1.15rem;color:var(--champagne-dark);margin-bottom:10px;text-wrap:balance}
+.marathi-invitation .reception-invitation .reception-heading{font-size:clamp(1.5rem,4.8vw,2.1rem);font-weight:700;color:#ad392f;line-height:1.5;margin-bottom:16px;text-wrap:balance;text-shadow:0 1px 0 #fffdf5}
+.reception-highlight{font-weight:700}
 
 /* Prominent family names and contact details on the opening invitation page. */
 .marathi-invitation .hero .wedding-kicker {
@@ -272,10 +275,11 @@
 }
 .marathi-invitation .hero .wedding-date {
   margin: 8px 0 18px;
-  color: #a34e24;
-  font-size: clamp(1.1rem, 3.7vw, 1.4rem);
-  font-weight: 600;
+  color: #ad392f;
+  font-size: clamp(1.5rem, 5.2vw, 2rem);
+  font-weight: 700;
   line-height: 1.8;
+  text-shadow: 0 1px 0 #fffdf5;
 }
 .marathi-invitation .hero .marathi-couple {
   width: 100%;

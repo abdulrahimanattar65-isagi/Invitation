@@ -1,25 +1,25 @@
 /* High-resolution opening stationery with a quiet, full-screen surround. */
 .music-toggle {
   position: fixed;
-  bottom: max(18px, env(safe-area-inset-bottom));
-  right: max(18px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  right: max(14px, env(safe-area-inset-right));
   z-index: 60;
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
-  padding: 11px;
-  border: 1px solid transparent;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
   border-radius: 50%;
   background: transparent;
-  color: #8b6a37;
+  color: #986523;
   box-shadow: none;
   cursor: pointer;
-  transition: background .2s, color .2s;
+  transition: color .2s;
 }
-.music-toggle svg { width: 24px; height: 24px; }
-.music-toggle:hover { background: #f0e1c530; color: #654a22; }
-.music-toggle.is-playing { color: #654a22; }
+.music-toggle svg { display: block; width: 19px; height: 24px; }
+.music-toggle:hover { color: #704714; }
+.music-toggle.is-playing { color: #875319; }
 .music-toggle:focus-visible { outline: 2px solid #8b6a37; outline-offset: 4px; }
 .marathi-invitation .gate-cover {
   background: #f3e5ce;
@@ -70,14 +70,15 @@
 }
 .gate-scene.is-playing .gate-poster { opacity: 0; }
 .gate-cover .gate-initials {
-  top: calc(50% - max(13.1svh, 23.2889vw) - 12px);
+  /* Follow the plaque's center as the portrait film crops to fill the screen. */
+  top: calc(50% - max(13.5svh, 24vw));
   z-index: 2;
   width: max-content;
-  padding: .3em .65em;
-  border: 1px solid #ae8e5580;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #fff9eceb, #eddbb8e6);
-  box-shadow: 0 3px 14px #73593624, inset 0 1px 0 #fff9;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   font-weight: 400;
   color: #77531d;
   text-shadow: 0 1px 1px #fff1bb;
@@ -131,7 +132,25 @@
 .gate-enter:hover .gate-enter-label { border-color: #967239; box-shadow: 0 5px 20px #795b2926; }
 .gate-enter:hover .gate-enter-label svg { transform: translateX(3px); }
 .gate-cover .gate-enter:focus-visible { outline: 2px solid #8d682e; outline-offset: -8px; }
-.gate-cover .gate-skip { left: max(18px, env(safe-area-inset-left)); right: auto; border-radius: 999px; backdrop-filter: blur(8px); }
+.gate-cover .gate-skip {
+  position: fixed;
+  left: max(14px, env(safe-area-inset-left));
+  right: auto;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #875319;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.gate-cover .gate-skip:hover { color: #704714; }
+.gate-cover .gate-skip:focus-visible { outline: 2px solid #8b6a37; outline-offset: 2px; }
 @media (max-width: 599px) {
   .marathi-invitation .gate-cover::after { display: none; }
   .gate-date { margin-bottom: 12px; }

@@ -8,6 +8,8 @@ import GallerySlideshow from "./components/GallerySlideshow.jsx";
 import TextureDefs from "./components/TextureDefs.jsx";
 import EmbossedFrame from "./components/EmbossedFrame.jsx";
 
+const receptionHighlight = "invited to the wedding feast on Saturday, 5 December 2026, from 5:15 PM";
+
 function PageImages({ page }) {
   const images = w.pageImages[page];
   if (!images?.length) return null;
@@ -98,11 +100,9 @@ export default function App() {
       <button type="button" className={`music-toggle${musicPlaying ? " is-playing" : ""}`}
         onClick={toggleMusic} aria-label={musicPlaying ? "Mute music" : "Play music"}
         aria-pressed={musicPlaying} title={musicPlaying ? "Mute music" : "Play music"}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M9 17V5l12-2v12M9 8l12-2" />
-          <ellipse cx="6" cy="17" rx="3" ry="2.5" />
-          <ellipse cx="18" cy="15" rx="3" ry="2.5" />
-          {!musicPlaying && <path d="m3 3 18 18" />}
+        <svg viewBox="-3 0 34 42" fill="currentColor" aria-hidden="true">
+          <path d="M13 30V3h2c.8 6 3.4 9.1 7.5 12.8 5.8 5.3 5.2 11.5.6 17.2h-1.6c3.6-7.5 3.3-12.8-6.5-16.8v17.3c0 4-4 6.5-8.2 6.5C2.8 40 0 37.8 0 34.9c0-3.1 3.5-5.5 7.6-5.5 2.1 0 4 .3 5.4.6Z" />
+          {!musicPlaying && <path d="m4 6 24 29" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />}
         </svg>
       </button>
       <main className="page">
@@ -147,7 +147,9 @@ export default function App() {
             {w.gallery.length > 0 && <GallerySlideshow photos={w.gallery} />}
           </section>
           <section className="invitation-sheet" aria-labelledby="reception-heading">
-            <div className="reception-invitation"><h2 id="reception-heading" className="reception-heading">Blessings Ceremony &amp; Wedding Feast</h2><p>{w.reception}</p></div>
+            <div className="reception-invitation"><h2 id="reception-heading" className="reception-heading">Blessings Ceremony &amp; Wedding Feast</h2><p>{w.reception.split(receptionHighlight).map((part, index) => (
+              <span key={index}>{index > 0 && <strong className="reception-highlight">{receptionHighlight}</strong>}{part}</span>
+            ))}</p></div>
             <div className="wedding-location">
               <p className="wedding-kicker">Wedding Venue</p>
               <h3>{w.venue}</h3>
